@@ -246,14 +246,31 @@ const register = async (req) => {
 
         await connection.commit();
 
-        await NotificationService.sendRegistrationOTP(
+        try {
+            
+            console.log("OTP Generated:", otp);
 
-            email,
+            console.log("Sending OTP email...");
+            
+            await NotificationService.sendRegistrationOTP(
+            
+                email,
+            
+                otp
+            
+            );
 
-            otp
+            console.log("Skipping email...");
 
-        );
-
+            console.log("OTP email sent successfully.");
+        
+        }
+        catch (error) {
+        
+            console.error("Email sending failed:", error.message);
+        
+        }
+        
         return {
 
             email,
@@ -265,6 +282,12 @@ const register = async (req) => {
     }
 
     catch (error) {
+
+        console.error("REGISTER ERROR:");
+
+        console.error(error);
+
+        console.error(error.stack);
 
         await connection.rollback();
 
