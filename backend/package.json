@@ -19,6 +19,7 @@
   "author": "Digesh Kumar Tandan",
   "license": "ISC",
   "dependencies": {
+    "@getbrevo/brevo": "^6.0.2",
     "bcrypt": "^6.0.0",
     "cloudinary": "^1.41.3",
     "cookie-parser": "^1.4.7",
@@ -34,7 +35,6 @@
     "multer": "^2.2.0",
     "multer-storage-cloudinary": "^4.0.0",
     "mysql2": "^3.22.6",
-    "nodemailer": "^9.0.4",
     "otp-generator": "^4.0.1",
     "razorpay": "^2.9.8",
     "uuid": "^14.0.1"
