@@ -1,71 +1,16 @@
-const nodemailer =
-require("nodemailer");
+const brevo =
+require("@getbrevo/brevo");
 
-const transporter =
-nodemailer.createTransport({
+const apiInstance =
+new brevo.TransactionalEmailsApi();
 
-    host:
-        process.env.MAIL_HOST,
+apiInstance.setApiKey(
 
-    port:
-        Number(process.env.MAIL_PORT),
+    brevo.TransactionalEmailsApiApiKeys.apiKey,
 
-    secure:
-        false,
+    process.env.BREVO_API_KEY
 
-    auth: {
-
-        user:
-            process.env.MAIL_USER,
-
-        pass:
-            process.env.MAIL_PASS
-
-    },
-
-    tls: {
-
-        rejectUnauthorized:
-            false
-
-    },
-
-    connectionTimeout:
-        10000,
-
-    greetingTimeout:
-        10000,
-
-    socketTimeout:
-        10000
-
-});
-
-// Verify SMTP connection when server starts
-
-(async () => {
-
-    try {
-
-        await transporter.verify();
-
-        console.log(
-            "✅ Brevo SMTP Connected Successfully"
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "❌ Brevo SMTP Connection Failed"
-        );
-
-        console.error(error);
-
-    }
-
-})();
+);
 
 const sendMail =
 async (
@@ -80,113 +25,72 @@ async (
 
     try {
 
-        console.log(
-            "\n========== Sending Email =========="
-        );
+        console.log("\n==============================");
 
-        console.log(
-            "To:",
-            to
-        );
+        console.log("Sending Email");
 
-        console.log(
-            "From:",
-            `"Instant Delivery" <${process.env.MAIL_FROM}>`
-        );
+        console.log("To:", to);
 
-        console.log(
-            "Subject:",
-            subject
-        );
+        console.log("Subject:", subject);
 
-        console.time(
-            "Email Sent Time"
-        );
+        console.time("Email");
 
-        const info =
-            await transporter.sendMail({
+        const result =
+            await apiInstance.sendTransacEmail({
 
-                from:
-                    `"Instant Delivery" <${process.env.MAIL_FROM}>`,
+                sender: {
 
-                to,
+                    email:
+                        process.env.MAIL_FROM,
+
+                    name:
+                        process.env.MAIL_FROM_NAME
+
+                },
+
+                to: [
+
+                    {
+
+                        email: to
+
+                    }
+
+                ],
 
                 subject,
 
-                html
+                htmlContent: html
 
             });
 
-        console.timeEnd(
-            "Email Sent Time"
-        );
+        console.timeEnd("Email");
 
-        console.log(
-            "✅ Email Sent Successfully"
-        );
+        console.log("Email Sent Successfully");
 
-        console.log(
-            "Message ID:",
-            info.messageId
-        );
+        console.log(result.body);
 
-        console.log(
-            "Accepted:",
-            info.accepted
-        );
+        console.log("==============================\n");
 
-        console.log(
-            "Rejected:",
-            info.rejected
-        );
-
-        console.log(
-            "Response:",
-            info.response
-        );
-
-        console.log(
-            "===================================\n"
-        );
-
-        return info;
+        return result.body;
 
     }
 
     catch (error) {
 
-        console.error(
-            "\n❌ Email Sending Failed"
+        console.error("\nEmail Sending Failed");
+
+        console.error(error.response?.body || error);
+
+        throw new Error(
+
+            error.response?.body?.message ||
+
+            error.message ||
+
+            "Unable to send email."
+
         );
-
-        console.error(
-            "Message:",
-            error.message
-        );
-
-        console.error(
-            "Code:",
-            error.code
-        );
-
-        console.error(
-            "Command:",
-            error.command
-        );
-
-        console.error(
-            "Response:",
-            error.response
-        );
-
-        console.error(
-            "Response Code:",
-            error.responseCode
-        );
-
-        console.error(error);
-
-        throw error;
 
     }
 
