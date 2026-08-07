@@ -37,8 +37,6 @@ const testConnection = async () => {
 
         console.log("MySQL Connected Successfully");
 
-        console.log("Database :", process.env.DB_NAME);
-
         connection.release();
 
     } catch (error) {
