@@ -140,6 +140,24 @@ app.get(
 
 );
 
+app.get("/", (req, res) => {
+
+    res.status(200).json({
+
+        success: true,
+
+        message: "Instant Delivery Backend API",
+
+        version: "1.0.0",
+
+        health: "/api/v1/health",
+
+        documentation: "/docs"
+
+    });
+
+});
+
 // API Routes
 app.use("/api/v1/auth",authRoutes);
 
