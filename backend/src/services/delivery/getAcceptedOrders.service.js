@@ -1,0 +1,42 @@
+const {
+
+    DeliveryPartnerModel
+
+} = require("../../models/deliveryPartner.model");
+
+const DeliveryAssignmentModel =
+require("../../models/deliveryAssignment.model");
+
+const DELIVERY_MESSAGES =
+require("../../constants/deliveryMessages");
+
+const getAcceptedOrders =
+async (req) => {
+
+    const partner =
+        await DeliveryPartnerModel.findByUserId(
+
+            req.user.id
+
+        );
+
+    if (!partner) {
+
+        throw new Error(
+
+            DELIVERY_MESSAGES.DELIVERY_PARTNER_NOT_FOUND
+
+        );
+
+    }
+
+    return await DeliveryAssignmentModel.getAcceptedOrders(
+
+        partner.id
+
+    );
+
+};
+
+module.exports =
+getAcceptedOrders;

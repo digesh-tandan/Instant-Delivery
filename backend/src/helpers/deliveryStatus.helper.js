@@ -1,0 +1,21 @@
+const DELIVERY_STATUS = Object.freeze({
+
+    PENDING: "PENDING",
+
+    ASSIGNED: "ASSIGNED",
+
+    ACCEPTED: "ACCEPTED",
+
+    REJECTED: "REJECTED",
+
+    PICKED_UP: "PICKED_UP",
+
+    OUT_FOR_DELIVERY: "OUT_FOR_DELIVERY",
+
+    DELIVERED: "DELIVERED",
+
+    CANCELLED: "CANCELLED"
+
+});
+
+module.exports = DELIVERY_STATUS;
