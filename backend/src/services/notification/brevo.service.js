@@ -5,30 +5,67 @@ const transporter =
 nodemailer.createTransport({
 
     host:
-
         process.env.MAIL_HOST,
 
     port:
-
         Number(process.env.MAIL_PORT),
 
     secure:
-
         false,
 
     auth: {
 
         user:
-
             process.env.MAIL_USER,
 
         pass:
-
             process.env.MAIL_PASS
+
+    },
+
+    tls: {
+
+        rejectUnauthorized:
+            false
+
+    },
+
+    connectionTimeout:
+        10000,
+
+    greetingTimeout:
+        10000,
+
+    socketTimeout:
+        10000
+
+});
+
+// Verify SMTP connection when server starts
+
+(async () => {
+
+    try {
+
+        await transporter.verify();
+
+        console.log(
+            "✅ Brevo SMTP Connected Successfully"
+        );
 
     }
 
-});
+    catch (error) {
+
+        console.error(
+            "❌ Brevo SMTP Connection Failed"
+        );
+
+        console.error(error);
+
+    }
+
+})();
 
 const sendMail =
 async (
@@ -41,26 +78,117 @@ async (
 
 ) => {
 
-    console.log("MAIL_FROM:", process.env.MAIL_FROM);
+    try {
 
-    console.log(
-        "FROM:",
-        `"Instant Delivery" <${process.env.MAIL_FROM}>`
-    );
-    
-    await transporter.sendMail({
+        console.log(
+            "\n========== Sending Email =========="
+        );
 
-        from:
+        console.log(
+            "To:",
+            to
+        );
 
-            `"Instant Delivery" <${process.env.MAIL_FROM}>`,
+        console.log(
+            "From:",
+            `"Instant Delivery" <${process.env.MAIL_FROM}>`
+        );
 
-        to,
+        console.log(
+            "Subject:",
+            subject
+        );
 
-        subject,
+        console.time(
+            "Email Sent Time"
+        );
 
-        html
+        const info =
+            await transporter.sendMail({
 
-    });
+                from:
+                    `"Instant Delivery" <${process.env.MAIL_FROM}>`,
+
+                to,
+
+                subject,
+
+                html
+
+            });
+
+        console.timeEnd(
+            "Email Sent Time"
+        );
+
+        console.log(
+            "✅ Email Sent Successfully"
+        );
+
+        console.log(
+            "Message ID:",
+            info.messageId
+        );
+
+        console.log(
+            "Accepted:",
+            info.accepted
+        );
+
+        console.log(
+            "Rejected:",
+            info.rejected
+        );
+
+        console.log(
+            "Response:",
+            info.response
+        );
+
+        console.log(
+            "===================================\n"
+        );
+
+        return info;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "\n❌ Email Sending Failed"
+        );
+
+        console.error(
+            "Message:",
+            error.message
+        );
+
+        console.error(
+            "Code:",
+            error.code
+        );
+
+        console.error(
+            "Command:",
+            error.command
+        );
+
+        console.error(
+            "Response:",
+            error.response
+        );
+
+        console.error(
+            "Response Code:",
+            error.responseCode
+        );
+
+        console.error(error);
+
+        throw error;
+
+    }
 
 };
 
