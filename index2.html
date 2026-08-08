@@ -1,0 +1,5456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Instant Delivery</title>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .navbar {
+
+            background: #ffffff;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            padding:
+                15px 6%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            color: #2563eb;
+
+            cursor: pointer;
+
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 8px;
+
+            align-items: center;
+
+        }
+
+        .nav-links button {
+
+            border: none;
+
+            background: transparent;
+
+            padding: 9px 12px;
+
+            border-radius: 8px;
+
+            color: #475569;
+
+        }
+
+        .nav-links button:hover {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+        }
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 30px 20px;
+
+            min-height: 75vh;
+
+        }
+
+        .hero {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 45px;
+
+            margin-bottom: 30px;
+
+        }
+
+        .hero h1 {
+
+            font-size: 42px;
+
+            margin-bottom: 12px;
+
+        }
+
+        .hero p {
+
+            max-width: 650px;
+
+            line-height: 1.7;
+
+            opacity: .9;
+
+        }
+
+        .hero button {
+
+            margin-top: 20px;
+
+        }
+
+        .btn {
+
+            border: none;
+
+            padding: 11px 17px;
+
+            border-radius: 9px;
+
+            font-weight: 600;
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+        .btn:hover {
+            opacity: .9;
+        }
+
+        .btn-secondary {
+
+            background: #e2e8f0;
+
+            color: #334155;
+
+        }
+
+        .btn-danger {
+
+            background: #dc2626;
+
+            color: white;
+
+        }
+
+        .btn-success {
+
+            background: #16a34a;
+
+            color: white;
+
+        }
+
+        .card {
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+        }
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap: 18px;
+
+        }
+
+        .feature {
+
+            text-align: center;
+
+            padding: 25px;
+
+        }
+
+        .feature-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 10px;
+
+        }
+
+        .form-container {
+
+            max-width: 520px;
+
+            margin:
+                20px auto;
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+        }
+
+        .form-container h2 {
+
+            margin-bottom: 8px;
+
+        }
+
+        .subtitle {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+        .form-group label {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 6px;
+
+        }
+
+        .input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            outline: none;
+
+        }
+
+        .input:focus {
+
+            border-color: #2563eb;
+
+        }
+
+        .row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+        }
+
+        .products {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
+
+            gap: 18px;
+
+        }
+
+        .product {
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+        }
+
+        .product-image {
+
+            height: 170px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eff6ff;
+
+            font-size: 60px;
+
+        }
+
+        .product-body {
+
+            padding: 16px;
+
+        }
+
+        .product-body h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 6px;
+
+        }
+
+        .price {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin:
+                10px 0;
+
+        }
+
+        .search-box {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .search-box .input {
+            flex: 1;
+        }
+
+        .cart-item {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                auto
+                auto;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px 0;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+        }
+
+        .quantity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        .quantity button {
+
+            width: 30px;
+
+            height: 30px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-weight: bold;
+
+        }
+
+        .total {
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            background: #f1f5f9;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .address {
+
+            border:
+                1px solid #e2e8f0;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            margin-bottom: 12px;
+
+        }
+
+        .badge {
+
+            display: inline-block;
+
+            padding:
+                5px 9px;
+
+            border-radius: 20px;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .badge-success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+        .badge-danger {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+        }
+
+        .alert {
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+
+        }
+
+        .alert-error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+        }
+
+        .alert-success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .55
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 200;
+
+        }
+
+        .modal-box {
+
+            background: white;
+
+            width: 100%;
+
+            max-width: 550px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+        }
+
+        .footer {
+
+            background: #0f172a;
+
+            color: #cbd5e1;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 30px;
+
+        }
+
+        .footer a {
+
+            color: #93c5fd;
+
+            text-decoration: none;
+
+            margin: 0 8px;
+
+        }
+
+        @media(max-width: 900px) {
+
+            .grid,
+            .products {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+        }
+
+        @media(max-width: 600px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+            }
+
+            .nav-links {
+
+                overflow-x: auto;
+
+                width: 100%;
+
+            }
+
+            .grid,
+            .products,
+            .row {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .hero {
+
+                padding: 28px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 30px;
+
+            }
+
+            .cart-item {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div
+        class="logo"
+        onclick="showHome()"
+    >
+
+        🛒 Instant<span>Delivery</span>
+
+    </div>
+
+    <div class="nav-links">
+
+        <button onclick="showHome()">
+            Home
+        </button>
+
+        <button onclick="showProducts()">
+            Products
+        </button>
+
+        <button onclick="showCart()">
+            🛒 Cart
+            <span id="cartCount"></span>
+        </button>
+
+        <button
+            id="ordersButton"
+            class="hidden"
+            onclick="showOrders()"
+        >
+            Orders
+        </button>
+
+        <button
+            id="profileButton"
+            class="hidden"
+            onclick="showProfile()"
+        >
+            Profile
+        </button>
+
+        <button
+            id="loginButton"
+            onclick="showLogin()"
+        >
+            Login
+        </button>
+
+        <button
+            id="registerButton"
+            onclick="showRegister()"
+        >
+            Register
+        </button>
+
+        <button
+            id="logoutButton"
+            class="hidden"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main
+    class="container"
+    id="app"
+></main>
+
+
+<div
+    id="modal"
+    class="modal hidden"
+>
+
+    <div
+        class="modal-box"
+        id="modalContent"
+    ></div>
+
+</div>
+
+
+<footer class="footer">
+
+    <p>
+        © 2026 Instant Delivery
+    </p>
+
+    <p style="margin-top:8px">
+
+        <a
+            href="https://github.com/digesh-tandan/Instant-Delivery"
+            target="_blank"
+        >
+            GitHub
+        </a>
+
+        <a
+            href="https://instant-delivery-backend-e2lq.onrender.com/docs"
+            target="_blank"
+        >
+            API Documentation
+        </a>
+
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURATION
+===================================================== */
+
+const API_BASE =
+    "https://instant-delivery-backend-e2lq.onrender.com/api/v1";
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let accessToken =
+    localStorage.getItem(
+        "accessToken"
+    );
+
+let currentUser =
+    JSON.parse(
+        localStorage.getItem(
+            "user"
+        ) || "null"
+    );
+
+
+/* =====================================================
+   API HELPER
+===================================================== */
+
+async function api(
+
+    endpoint,
+
+    options = {}
+
+) {
+
+    const headers = {
+
+        "Content-Type":
+            "application/json",
+
+        ...(options.headers || {})
+
+    };
+
+    if (accessToken) {
+
+        headers.Authorization =
+            `Bearer ${accessToken}`;
+
+    }
+
+    const response =
+        await fetch(
+
+            API_BASE +
+            endpoint,
+
+            {
+
+                ...options,
+
+                headers
+
+            }
+
+        );
+
+    const text =
+        await response.text();
+
+    let data = {};
+
+    try {
+
+        data =
+            text
+                ? JSON.parse(text)
+                : {};
+
+    }
+
+    catch {
+
+        data = {
+            message: text
+        };
+
+    }
+
+    if (!response.ok) {
+
+        throw new Error(
+
+            data.message ||
+
+            data.error ||
+
+            "Something went wrong."
+
+        );
+
+    }
+
+    return data;
+
+}
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+function setAuthentication(
+
+    token,
+
+    user
+
+) {
+
+    accessToken =
+        token;
+
+    currentUser =
+        user;
+
+    if (token) {
+
+        localStorage.setItem(
+            "accessToken",
+            token
+        );
+
+    }
+
+    else {
+
+        localStorage.removeItem(
+            "accessToken"
+        );
+
+    }
+
+    if (user) {
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
+
+    }
+
+    else {
+
+        localStorage.removeItem(
+            "user"
+        );
+
+    }
+
+    updateNavigation();
+
+}
+
+
+function updateNavigation() {
+
+    const loggedIn =
+        Boolean(accessToken);
+
+    document
+        .getElementById(
+            "loginButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            loggedIn
+        );
+
+    document
+        .getElementById(
+            "registerButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            loggedIn
+        );
+
+    document
+        .getElementById(
+            "logoutButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            !loggedIn
+        );
+
+    document
+        .getElementById(
+            "profileButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            !loggedIn
+        );
+
+    document
+        .getElementById(
+            "ordersButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            !loggedIn
+        );
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function showHome() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <section class="hero">
+
+            <h1>
+                Groceries delivered fast.
+            </h1>
+
+            <p>
+
+                Order your daily essentials
+                from Instant Delivery and
+                get them delivered quickly
+                to your doorstep.
+
+            </p>
+
+            <button
+                class="btn"
+                onclick="showProducts()"
+            >
+
+                Start Shopping →
+
+            </button>
+
+        </section>
+
+
+        <div class="grid">
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Fast Delivery
+                </h3>
+
+                <p>
+                    Quick and reliable delivery.
+                </p>
+
+            </div>
+
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Secure Account
+                </h3>
+
+                <p>
+                    OTP verified authentication.
+                </p>
+
+            </div>
+
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Secure Payment
+                </h3>
+
+                <p>
+                    Razorpay powered payments.
+                </p>
+
+            </div>
+
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    📦
+                </div>
+
+                <h3>
+                    Order Tracking
+                </h3>
+
+                <p>
+                    Track your order status.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+function showRegister() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Create Account
+            </h2>
+
+            <p class="subtitle">
+                Register your Instant Delivery account.
+            </p>
+
+            <div id="registerMessage"></div>
+
+            <form
+                onsubmit="register(event)"
+            >
+
+                <div class="row">
+
+                    <div class="form-group">
+
+                        <label>
+                            First Name
+                        </label>
+
+                        <input
+                            class="input"
+                            id="firstName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Last Name
+                        </label>
+
+                        <input
+                            class="input"
+                            id="lastName"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        class="input"
+                        id="registerEmail"
+                        type="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        class="input"
+                        id="registerPhone"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        class="input"
+                        id="registerPassword"
+                        type="password"
+                        minlength="8"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    style="width:100%"
+                >
+
+                    Register
+
+                </button>
+
+            </form>
+
+
+            <p
+                class="center"
+                style="margin-top:18px"
+            >
+
+                Already have an account?
+
+                <a
+                    href="#"
+                    onclick="
+                        showLogin();
+                        return false;
+                    "
+                >
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   REGISTER API
+===================================================== */
+
+async function register(event) {
+
+    event.preventDefault();
+
+    const message =
+        document.getElementById(
+            "registerMessage"
+        );
+
+    try {
+
+        const response =
+            await api(
+
+                "/auth/register",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            first_name:
+                                document.getElementById(
+                                    "firstName"
+                                ).value,
+
+                            last_name:
+                                document.getElementById(
+                                    "lastName"
+                                ).value,
+
+                            email:
+                                document.getElementById(
+                                    "registerEmail"
+                                ).value,
+
+                            phone:
+                                document.getElementById(
+                                    "registerPhone"
+                                ).value,
+
+                            password:
+                                document.getElementById(
+                                    "registerPassword"
+                                ).value
+
+                        })
+
+                }
+
+            );
+
+        showVerifyOTP(
+            document.getElementById(
+                "registerEmail"
+            ).value
+        );
+
+    }
+
+    catch (error) {
+
+        message.innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   VERIFY OTP
+===================================================== */
+
+function showVerifyOTP(email) {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Verify Your Account
+            </h2>
+
+            <p class="subtitle">
+
+                Enter the OTP sent to
+
+                <b>
+                    ${email}
+                </b>
+
+            </p>
+
+
+            <div id="otpMessage"></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    OTP
+                </label>
+
+                <input
+                    class="input"
+                    id="otp"
+                    maxlength="6"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="
+                    verifyOTP('${email}')
+                "
+            >
+
+                Verify OTP
+
+            </button>
+
+
+            <button
+                class="btn btn-secondary"
+                style="
+                    width:100%;
+                    margin-top:10px;
+                "
+                onclick="
+                    resendOTP('${email}')
+                "
+            >
+
+                Resend OTP
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   VERIFY OTP API
+===================================================== */
+
+async function verifyOTP(email) {
+
+    const message =
+        document.getElementById(
+            "otpMessage"
+        );
+
+    try {
+
+        await api(
+
+            "/auth/verify-otp",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email,
+
+                        otp:
+                            document.getElementById(
+                                "otp"
+                            ).value
+
+                    })
+
+            }
+
+        );
+
+        message.innerHTML = `
+
+            <div class="alert alert-success">
+
+                Account created successfully.
+
+            </div>
+
+        `;
+
+        setTimeout(
+            showLogin,
+            1000
+        );
+
+    }
+
+    catch (error) {
+
+        message.innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RESEND OTP
+===================================================== */
+
+async function resendOTP(email) {
+
+    try {
+
+        await api(
+
+            "/auth/resend-otp",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email
+
+                    })
+
+            }
+
+        );
+
+        alert(
+            "OTP resent successfully."
+        );
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function showLogin() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Welcome Back
+            </h2>
+
+            <p class="subtitle">
+                Login to your account.
+            </p>
+
+            <div id="loginMessage"></div>
+
+
+            <form
+                onsubmit="login(event)"
+            >
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        class="input"
+                        id="loginEmail"
+                        type="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        class="input"
+                        id="loginPassword"
+                        type="password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    style="width:100%"
+                >
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <div
+                class="center"
+                style="margin-top:15px"
+            >
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showForgotPassword()"
+                >
+
+                    Forgot Password?
+
+                </button>
+
+            </div>
+
+
+            <p
+                class="center"
+                style="margin-top:18px"
+            >
+
+                Don't have an account?
+
+                <a
+                    href="#"
+                    onclick="
+                        showRegister();
+                        return false;
+                    "
+                >
+
+                    Register
+
+                </a>
+
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   LOGIN API
+===================================================== */
+
+async function login(event) {
+
+    event.preventDefault();
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    try {
+
+        const response =
+            await api(
+
+                "/auth/login",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            email:
+                                document.getElementById(
+                                    "loginEmail"
+                                ).value,
+
+                            password:
+                                document.getElementById(
+                                    "loginPassword"
+                                ).value
+
+                        })
+
+                }
+
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        setAuthentication(
+
+            data.accessToken,
+
+            data.user
+
+        );
+
+        showHome();
+
+    }
+
+    catch (error) {
+
+        message.innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+function showForgotPassword() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Forgot Password
+            </h2>
+
+            <p class="subtitle">
+                Enter your registered email.
+            </p>
+
+            <div id="forgotMessage"></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    class="input"
+                    id="forgotEmail"
+                    type="email"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="forgotPassword()"
+            >
+
+                Send OTP
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+async function forgotPassword() {
+
+    try {
+
+        const email =
+            document.getElementById(
+                "forgotEmail"
+            ).value;
+
+        await api(
+
+            "/auth/forgot-password",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email
+
+                    })
+
+            }
+
+        );
+
+        showResetPassword(email);
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "forgotMessage"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET PASSWORD
+===================================================== */
+
+function showResetPassword(email) {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Reset Password
+            </h2>
+
+            <p class="subtitle">
+                Enter the OTP and your new password.
+            </p>
+
+            <div id="resetMessage"></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    class="input"
+                    id="resetEmail"
+                    value="${email}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    OTP
+                </label>
+
+                <input
+                    class="input"
+                    id="resetOTP"
+                    maxlength="6"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    New Password
+                </label>
+
+                <input
+                    class="input"
+                    id="newPassword"
+                    type="password"
+                    minlength="8"
+                >
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="resetPassword()"
+            >
+
+                Reset Password
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+async function resetPassword() {
+
+    try {
+
+        await api(
+
+            "/auth/reset-password",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email:
+                            document.getElementById(
+                                "resetEmail"
+                            ).value,
+
+                        otp:
+                            document.getElementById(
+                                "resetOTP"
+                            ).value,
+
+                        new_password:
+                            document.getElementById(
+                                "newPassword"
+                            ).value
+
+                    })
+
+            }
+
+        );
+
+        alert(
+            "Password reset successfully."
+        );
+
+        showLogin();
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "resetMessage"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout() {
+
+    try {
+
+        await api(
+
+            "/auth/logout",
+
+            {
+
+                method: "POST"
+
+            }
+
+        );
+
+    }
+
+    catch {}
+
+    setAuthentication(
+        null,
+        null
+    );
+
+    showHome();
+
+}
+
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+async function showProducts() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2 style="margin-bottom:18px">
+            Products
+        </h2>
+
+
+        <div class="search-box">
+
+            <input
+                class="input"
+                id="searchProduct"
+                placeholder="Search products..."
+            >
+
+            <button
+                class="btn"
+                onclick="searchProducts()"
+            >
+
+                Search
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="products"
+            class="products"
+        >
+
+            Loading products...
+
+        </div>
+
+    `;
+
+    await loadProducts();
+
+}
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+async function loadProducts(query = "") {
+
+    try {
+
+        let endpoint = "/prod";
+
+        if (query && query.trim()) {
+
+            endpoint =
+                "/prod/search?q=" +
+                encodeURIComponent(
+                    query.trim()
+                );
+
+        }
+
+        const response =
+            await api(endpoint);
+
+        console.log(
+            "Products API Response:",
+            response
+        );
+
+        const data =
+            response.data ??
+            response;
+
+        let list = [];
+
+        if (Array.isArray(data)) {
+
+            list = data;
+
+        }
+
+        else if (Array.isArray(data.products)) {
+
+            list = data.products;
+
+        }
+
+        else if (Array.isArray(data.rows)) {
+
+            list = data.rows;
+
+        }
+
+        else if (Array.isArray(data.data)) {
+
+            list = data.data;
+
+        }
+
+        renderProducts(list);
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Product loading error:",
+            error
+        );
+
+        document.getElementById(
+            "products"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SEARCH PRODUCTS
+===================================================== */
+
+function searchProducts() {
+
+    const query =
+        document.getElementById(
+            "searchProduct"
+        ).value;
+
+    loadProducts(
+        query
+    );
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(
+    products
+) {
+
+    const container =
+        document.getElementById(
+            "products"
+        );
+
+    if (!products.length) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                No products found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        products.map(
+
+            product => `
+
+                <div class="product">
+
+                    <div class="product-image">
+
+                        🛒
+
+                    </div>
+
+                    <div class="product-body">
+
+                        <h3>
+
+                            ${
+                                product.name ||
+                                product.product_name ||
+                                "Product"
+                            }
+
+                        </h3>
+
+                        <p
+                            style="
+                                color:#64748b;
+                                font-size:13px;
+                            "
+                        >
+
+                            ${
+                                product.brand_name ||
+                                "Instant Delivery"
+                            }
+
+                        </p>
+
+
+                        <button
+                            class="btn"
+                            style="
+                                width:100%;
+                                margin-top:12px;
+                            "
+                            onclick="
+                                showVariants(
+                                    ${product.id}
+                                )
+                            "
+                        >
+
+                            View Variants
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =====================================================
+   VARIANTS
+===================================================== */
+
+async function showVariants(
+    productId
+) {
+
+    openModal(
+        "<h2>Loading variants...</h2>"
+    );
+
+    try {
+
+        const response =
+            await api(
+
+                `/prod/${productId}/var`
+
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const variants =
+            Array.isArray(data)
+                ? data
+                : data.variants ||
+                  data.rows ||
+                  [];
+
+        let html = `
+
+            <h2>
+                Select Variant
+            </h2>
+
+        `;
+
+        variants.forEach(
+
+            variant => {
+
+                const price =
+                    variant.final_price ??
+                    variant.selling_price ??
+                    0;
+
+                const stock =
+                    Number(
+                        variant.stock_quantity ||
+                        0
+                    );
+
+                html += `
+
+                    <div
+                        class="card"
+                        style="
+                            margin-top:12px;
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                            gap:15px;
+                        "
+                    >
+
+                        <div>
+
+                            <b>
+
+                                ${
+                                    variant.variant_name ||
+                                    variant.name ||
+                                    "Variant"
+                                }
+
+                            </b>
+
+                            <p
+                                style="
+                                    color:#64748b;
+                                    font-size:13px;
+                                "
+                            >
+
+                                SKU:
+                                ${
+                                    variant.sku ||
+                                    "-"
+                                }
+
+                            </p>
+
+                            <div class="price">
+
+                                ₹${Number(price).toFixed(2)}
+
+                            </div>
+
+                            <span
+                                class="
+                                    badge
+                                    ${
+                                        stock > 0
+                                            ? "badge-success"
+                                            : "badge-danger"
+                                    }
+                                "
+                            >
+
+                                ${
+                                    stock > 0
+                                        ? stock +
+                                          " available"
+                                        : "Out of stock"
+                                }
+
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="btn"
+                            ${
+                                stock <= 0
+                                    ? "disabled"
+                                    : ""
+                            }
+                            onclick="
+                                addToCart(
+                                    ${variant.id}
+                                )
+                            "
+                        >
+
+                            Add
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+        document.getElementById(
+            "modalContent"
+        ).innerHTML =
+            html;
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "modalContent"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+
+async function addToCart(
+    variantId
+) {
+
+    if (!accessToken) {
+
+        closeModal();
+
+        showLogin();
+
+        return;
+
+    }
+
+
+    try {
+
+        await api(
+
+            "/cart",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        variant_id:
+                            Number(
+                                variantId
+                            ),
+
+                        quantity: 1
+
+                    })
+
+            }
+
+        );
+
+
+        closeModal();
+
+
+        await updateCartCount();
+
+
+        alert(
+            "Product added to cart."
+        );
+
+
+        /*
+            Optional:
+            automatically open the cart
+            after adding an item.
+        */
+
+        showCart();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Add to cart error:",
+            error
+        );
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+async function showCart() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2>
+            My Cart
+        </h2>
+
+        <div
+            id="cart"
+            style="margin-top:20px"
+        >
+            Loading...
+        </div>
+
+    `;
+
+    await loadCart();
+
+}
+
+
+async function loadCart() {
+
+    const cartContainer =
+        document.getElementById("cart");
+
+    try {
+
+        if (!accessToken) {
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        const response =
+            await api(
+                "/cart"
+            );
+
+
+        console.log(
+            "CART API RESPONSE:",
+            response
+        );
+
+
+        /*
+            Expected backend response:
+
+            {
+                success: true,
+                message: "Cart fetched successfully.",
+                data: {
+                    cart: [...]
+                }
+            }
+        */
+
+
+        const cartItems =
+            response?.data?.cart || [];
+
+
+        console.log(
+            "CART ITEMS:",
+            cartItems
+        );
+
+
+        renderCart(
+            cartItems
+        );
+
+
+        /*
+            Also update cart count
+        */
+
+        updateCartCount(
+            cartItems
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Cart loading error:",
+            error
+        );
+
+
+        if (cartContainer) {
+
+            cartContainer.innerHTML = `
+
+                <div class="card center">
+
+                    <h3>
+                        Unable to load cart
+                    </h3>
+
+                    <p
+                        style="
+                            margin-top:8px;
+                            color:#dc2626;
+                        "
+                    >
+                        ${error.message}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+}
+/* =====================================================
+   RENDER CART
+===================================================== */
+
+function renderCart(cartResponse) {
+
+    console.log(
+        "Rendering cart response:",
+        cartResponse
+    );
+
+    let items = [];
+
+    /*
+        Backend response:
+
+        {
+            success: true,
+            message: "Cart fetched successfully.",
+            data: {
+                cart: [...]
+            }
+        }
+    */
+
+    if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.cart)
+    ) {
+
+        items = cartResponse.data.cart;
+
+    }
+
+    /*
+        Direct array fallback
+    */
+
+    else if (
+        Array.isArray(cartResponse)
+    ) {
+
+        items = cartResponse;
+
+    }
+
+    /*
+        Other possible response structures
+    */
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.cart)
+    ) {
+
+        items = cartResponse.cart;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.items)
+    ) {
+
+        items = cartResponse.data.items;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.items)
+    ) {
+
+        items = cartResponse.items;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.cart_items)
+    ) {
+
+        items = cartResponse.data.cart_items;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.cart_items)
+    ) {
+
+        items = cartResponse.cart_items;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.cartItems)
+    ) {
+
+        items = cartResponse.data.cartItems;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.cartItems)
+    ) {
+
+        items = cartResponse.cartItems;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.rows)
+    ) {
+
+        items = cartResponse.data.rows;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.rows)
+    ) {
+
+        items = cartResponse.rows;
+
+    }
+
+
+    console.log(
+        "Extracted cart items:",
+        items
+    );
+
+
+    /*
+        EMPTY CART
+    */
+
+    if (!items.length) {
+
+        document.getElementById(
+            "cart"
+        ).innerHTML = `
+
+            <div class="card center">
+
+                <h3>
+                    Your cart is empty 🛒
+                </h3>
+
+                <p
+                    style="
+                        margin-top:8px;
+                        color:#64748b;
+                    "
+                >
+                    Add products to your cart
+                    to see them here.
+                </p>
+
+                <button
+                    class="btn"
+                    style="
+                        margin-top:15px;
+                    "
+                    onclick="showProducts()"
+                >
+                    Shop Now
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+        CALCULATE TOTAL
+    */
+
+    let total = 0;
+
+
+    /*
+        CART HTML
+    */
+
+    let html = `
+
+        <div class="card">
+
+            <h3
+                style="
+                    margin-bottom:15px;
+                "
+            >
+
+                ${items.length}
+                ${items.length === 1
+                    ? "Item"
+                    : "Items"}
+
+            </h3>
+
+    `;
+
+
+    /*
+        RENDER EACH CART ITEM
+    */
+
+    items.forEach(
+        item => {
+
+            const itemId =
+                item.item_id ??
+                item.id;
+
+
+            const variantId =
+                item.variant_id;
+
+
+            const quantity =
+                Number(
+                    item.quantity || 1
+                );
+
+
+            const unitPrice =
+                Number(
+                    item.final_price ??
+                    item.selling_price ??
+                    item.price ??
+                    0
+                );
+
+
+            const itemTotal =
+                Number(
+                    item.total_price ??
+                    (
+                        unitPrice *
+                        quantity
+                    )
+                );
+
+
+            total += itemTotal;
+
+
+            const productName =
+                item.product_name ??
+                item.name ??
+                "Product";
+
+
+            const variantName =
+                item.variant_name ??
+                "";
+
+
+            const sku =
+                item.sku ??
+                "";
+
+
+            html += `
+
+                <div
+                    class="cart-item"
+                >
+
+                    <!-- PRODUCT INFORMATION -->
+
+                    <div>
+
+                        <h3>
+                            ${productName}
+                        </h3>
+
+
+                        ${
+                            variantName
+                                ? `
+                                    <p
+                                        style="
+                                            color:#64748b;
+                                            margin-top:5px;
+                                        "
+                                    >
+                                        ${variantName}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+
+                        ${
+                            sku
+                                ? `
+                                    <p
+                                        style="
+                                            color:#94a3b8;
+                                            font-size:12px;
+                                            margin-top:4px;
+                                        "
+                                    >
+                                        SKU:
+                                        ${sku}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+
+                        <p
+                            style="
+                                margin-top:8px;
+                                font-weight:600;
+                            "
+                        >
+                            ₹${unitPrice.toFixed(2)}
+                            / item
+                        </p>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <div
+                        class="quantity"
+                    >
+
+                        <button
+                            onclick="
+                                updateCartItem(
+                                    ${itemId},
+                                    ${quantity - 1}
+                                )
+                            "
+                        >
+                            −
+                        </button>
+
+
+                        <b>
+                            ${quantity}
+                        </b>
+
+
+                        <button
+                            onclick="
+                                updateCartItem(
+                                    ${itemId},
+                                    ${quantity + 1}
+                                )
+                            "
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <!-- PRICE -->
+
+                    <div
+                        style="
+                            text-align:right;
+                        "
+                    >
+
+                        <strong>
+                            ₹${itemTotal.toFixed(2)}
+                        </strong>
+
+
+                        <br>
+
+
+                        <button
+                            class="
+                                btn
+                                btn-danger
+                            "
+                            style="
+                                margin-top:8px;
+                                padding:7px 10px;
+                            "
+                            onclick="
+                                removeCartItem(
+                                    ${itemId}
+                                )
+                            "
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    /*
+        CART SUMMARY
+    */
+
+    html += `
+
+            <div class="total">
+
+                <strong>
+                    Cart Total
+                </strong>
+
+                <strong
+                    style="
+                        font-size:20px;
+                    "
+                >
+                    ₹${total.toFixed(2)}
+                </strong>
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="
+                    width:100%;
+                    margin-top:15px;
+                "
+                onclick="checkout()"
+            >
+                Proceed to Checkout
+            </button>
+
+
+        </div>
+
+    `;
+
+
+    /*
+        DISPLAY CART
+    */
+
+    const cartElement =
+        document.getElementById("cart");
+
+
+    if (!cartElement) {
+
+        console.error(
+            'Element with id="cart" was not found.'
+        );
+
+        return;
+
+    }
+
+
+    cartElement.innerHTML =
+        html;
+
+}
+
+/* =====================================================
+   UPDATE CART
+===================================================== */
+
+async function updateCartItem(
+    itemId,
+    quantity
+) {
+
+    if (quantity < 1) {
+
+        removeCartItem(
+            itemId
+        );
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            `/cart/${itemId}`,
+
+            {
+
+                method: "PATCH",
+
+                body:
+                    JSON.stringify({
+
+                        quantity
+
+                    })
+
+            }
+
+        );
+
+        showCart();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   REMOVE CART ITEM
+===================================================== */
+
+async function removeCartItem(
+    itemId
+) {
+
+    try {
+
+        await api(
+
+            `/cart/${itemId}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+        showCart();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE CART COUNT
+===================================================== */
+
+async function updateCartCount(
+    cart = null
+) {
+
+    if (!accessToken) {
+
+        document.getElementById(
+            "cartCount"
+        ).textContent = "";
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+            If cart was not supplied,
+            fetch it from backend.
+        */
+
+        if (!cart) {
+
+            const response =
+                await api(
+                    "/cart"
+                );
+
+            cart =
+                response?.data?.cart || [];
+
+        }
+
+
+        /*
+            Normalize cart into an array.
+        */
+
+        let items = [];
+
+
+        if (Array.isArray(cart)) {
+
+            items = cart;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.cart)
+        ) {
+
+            items = cart.cart;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.items)
+        ) {
+
+            items = cart.items;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.cart_items)
+        ) {
+
+            items = cart.cart_items;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.cartItems)
+        ) {
+
+            items = cart.cartItems;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.rows)
+        ) {
+
+            items = cart.rows;
+
+        }
+
+
+        /*
+            Calculate total quantity.
+        */
+
+        const count =
+            items.reduce(
+
+                (
+                    total,
+                    item
+                ) => {
+
+                    return (
+                        total +
+                        Number(
+                            item.quantity || 0
+                        )
+                    );
+
+                },
+
+                0
+
+            );
+
+
+        document.getElementById(
+            "cartCount"
+        ).textContent =
+            count > 0
+                ? `(${count})`
+                : "";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Cart count error:",
+            error
+        );
+
+    }
+
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+async function showProfile() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2>
+            My Profile
+        </h2>
+
+        <div
+            id="profile"
+            style="
+                margin-top:20px;
+            "
+        >
+
+            Loading...
+
+        </div>
+
+    `;
+
+    try {
+
+        const response =
+            await api(
+                "/users/profile"
+            );
+
+        const user =
+            response.data ||
+            response;
+
+        currentUser =
+            user;
+
+        document.getElementById(
+            "profile"
+        ).innerHTML = `
+
+            <div class="card">
+
+                <form
+                    onsubmit="
+                        updateProfile(event)
+                    "
+                >
+
+                    <div class="row">
+
+                        <div class="form-group">
+
+                            <label>
+                                First Name
+                            </label>
+
+                            <input
+                                class="input"
+                                id="profileFirstName"
+                                value="${
+                                    user.first_name ||
+                                    ""
+                                }"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Last Name
+                            </label>
+
+                            <input
+                                class="input"
+                                id="profileLastName"
+                                value="${
+                                    user.last_name ||
+                                    ""
+                                }"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            class="input"
+                            value="${
+                                user.email ||
+                                ""
+                            }"
+                            disabled
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone
+                        </label>
+
+                        <input
+                            class="input"
+                            id="profilePhone"
+                            value="${
+                                user.phone ||
+                                ""
+                            }"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="btn"
+                    >
+
+                        Update Profile
+
+                    </button>
+
+                </form>
+
+
+                <hr
+                    style="
+                        border:0;
+                        border-top:
+                            1px solid #e2e8f0;
+                        margin:25px 0;
+                    "
+                >
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showAddresses()"
+                >
+
+                    Manage Addresses
+
+                </button>
+
+
+                <button
+                    class="btn btn-danger"
+                    style="margin-left:10px"
+                    onclick="deleteAccount()"
+                >
+
+                    Delete Account
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "profile"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE PROFILE
+===================================================== */
+
+async function updateProfile(
+    event
+) {
+
+    event.preventDefault();
+
+    try {
+
+        await api(
+
+            "/users/profile",
+
+            {
+
+                method: "PATCH",
+
+                body:
+                    JSON.stringify({
+
+                        first_name:
+                            document.getElementById(
+                                "profileFirstName"
+                            ).value,
+
+                        last_name:
+                            document.getElementById(
+                                "profileLastName"
+                            ).value,
+
+                        phone:
+                            document.getElementById(
+                                "profilePhone"
+                            ).value
+
+                    })
+
+            }
+
+        );
+
+        alert(
+            "Profile updated successfully."
+        );
+
+        showProfile();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADDRESS
+===================================================== */
+
+async function showAddresses() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div
+            style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin-bottom:20px;
+            "
+        >
+
+            <h2>
+                My Addresses
+            </h2>
+
+            <button
+                class="btn"
+                onclick="showAddAddress()"
+            >
+
+                + Add Address
+
+            </button>
+
+        </div>
+
+
+        <div id="addresses">
+
+            Loading...
+
+        </div>
+
+    `;
+
+    try {
+
+        const response =
+            await api(
+                "/add"
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const addresses =
+            Array.isArray(data)
+                ? data
+                : data.addresses ||
+                  data.rows ||
+                  [];
+
+        renderAddresses(
+            addresses
+        );
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "addresses"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function renderAddresses(
+    addresses
+) {
+
+    if (!addresses.length) {
+
+        document.getElementById(
+            "addresses"
+        ).innerHTML = `
+
+            <div class="card">
+
+                No addresses found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    document.getElementById(
+        "addresses"
+    ).innerHTML =
+        addresses.map(
+
+            address => `
+
+                <div
+                    class="address"
+                >
+
+                    <span class="badge">
+
+                        ${
+                            address.label ||
+                            "Address"
+                        }
+
+                    </span>
+
+
+                    <h3
+                        style="margin-top:10px"
+                    >
+
+                        ${
+                            address.receiver_name ||
+                            ""
+                        }
+
+                    </h3>
+
+
+                    <p
+                        style="
+                            color:#64748b;
+                            margin-top:8px;
+                            line-height:1.6;
+                        "
+                    >
+
+                        ${
+                            address.address_line1 ||
+                            ""
+                        }
+
+                        <br>
+
+                        ${
+                            address.address_line2 ||
+                            ""
+                        }
+
+                        <br>
+
+                        ${
+                            address.city ||
+                            ""
+                        },
+
+                        ${
+                            address.state ||
+                            ""
+                        }
+
+                        -
+
+                        ${
+                            address.pincode ||
+                            ""
+                        }
+
+                    </p>
+
+
+                    <div
+                        style="
+                            margin-top:12px;
+                        "
+                    >
+
+                        ${
+                            address.is_default
+                                ? `
+                                    <span
+                                        class="
+                                            badge
+                                            badge-success
+                                        "
+                                    >
+                                        Default
+                                    </span>
+                                `
+                                : `
+                                    <button
+                                        class="
+                                            btn
+                                            btn-secondary
+                                        "
+                                        onclick="
+                                            setDefaultAddress(
+                                                ${address.id}
+                                            )
+                                        "
+                                    >
+                                        Set Default
+                                    </button>
+                                `
+                        }
+
+
+                        <button
+                            class="
+                                btn
+                                btn-danger
+                            "
+                            style="
+                                margin-left:8px;
+                            "
+                            onclick="
+                                deleteAddress(
+                                    ${address.id}
+                                )
+                            "
+                        >
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =====================================================
+   ADD ADDRESS
+===================================================== */
+
+function showAddAddress() {
+
+    openModal(`
+
+        <h2>
+            Add Address
+        </h2>
+
+        <form
+            onsubmit="
+                addAddress(event)
+            "
+        >
+
+            <div class="form-group">
+
+                <label>
+                    Label
+                </label>
+
+                <input
+                    class="input"
+                    id="addressLabel"
+                    placeholder="Home"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Receiver Name
+                </label>
+
+                <input
+                    class="input"
+                    id="receiverName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone
+                </label>
+
+                <input
+                    class="input"
+                    id="addressPhone"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address Line 1
+                </label>
+
+                <input
+                    class="input"
+                    id="addressLine1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address Line 2
+                </label>
+
+                <input
+                    class="input"
+                    id="addressLine2"
+                >
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        class="input"
+                        id="addressCity"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        class="input"
+                        id="addressState"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Pincode
+                </label>
+
+                <input
+                    class="input"
+                    id="addressPincode"
+                    required
+                >
+
+            </div>
+
+<div class="row">
+
+    <div class="form-group">
+
+        <label>
+            Latitude
+        </label>
+
+        <input
+            class="input"
+            id="addressLatitude"
+            type="number"
+            step="any"
+            placeholder="e.g. 21.1938"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Longitude
+        </label>
+
+        <input
+            class="input"
+            id="addressLongitude"
+            type="number"
+            step="any"
+            placeholder="e.g. 81.3509"
+            required
+        >
+
+    </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Set as Default Address
+        </label>
+
+        <select
+            class="input"
+            id="addressIsDefault"
+        >
+
+            <option value="false">
+                No
+            </option>
+
+            <option value="true">
+                Yes
+            </option>
+
+        </select>
+
+    </div>
+            <button
+                class="btn"
+                style="width:100%"
+            >
+
+                Save Address
+
+            </button>
+
+        </form>
+
+    `);
+
+}
+
+
+async function addAddress(
+    event
+) {
+
+    event.preventDefault();
+
+    try {
+
+        await api(
+
+            "/add",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        title:
+                            document.getElementById(
+                                "addressLabel"
+                            ).value,
+
+                        receiver_name:
+                            document.getElementById(
+                                "receiverName"
+                            ).value,
+
+                        receiver_phone:
+                            document.getElementById(
+                                "addressPhone"
+                            ).value,
+
+                        address_line1:
+                            document.getElementById(
+                                "addressLine1"
+                            ).value,
+
+                        address_line2:
+                            document.getElementById(
+                                "addressLine2"
+                            ).value,
+
+                        city:
+                            document.getElementById(
+                                "addressCity"
+                            ).value,
+
+                        state:
+                            document.getElementById(
+                                "addressState"
+                            ).value,
+
+                        pincode:
+                            document.getElementById(
+                                "addressPincode"
+                            ).value,
+
+                        latitude:
+                            Number(
+                                document.getElementById(
+                                    "addressLatitude"
+                                ).value
+                            ),
+
+                        longitude:
+                            Number(
+                                document.getElementById(
+                                    "addressLongitude"
+                                ).value
+                            ),
+
+                        is_default:
+                            document.getElementById(
+                                "addressIsDefault"
+                            ).value === "true"
+
+                    })
+
+            }
+
+        );
+
+        closeModal();
+
+        showAddresses();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DEFAULT ADDRESS
+===================================================== */
+
+async function setDefaultAddress(
+    id
+) {
+
+    try {
+
+        await api(
+
+            `/add/${id}/default`,
+
+            {
+
+                method: "PATCH"
+
+            }
+
+        );
+
+        showAddresses();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE ADDRESS
+===================================================== */
+
+async function deleteAddress(
+    id
+) {
+
+    if (
+        !confirm(
+            "Delete this address?"
+        )
+    ) {
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            `/add/${id}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+        showAddresses();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE ACCOUNT
+===================================================== */
+
+async function deleteAccount() {
+
+    const password =
+        prompt(
+            "Enter your password:"
+        );
+
+    if (!password) {
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            "/users/delete-account",
+
+            {
+
+                method: "DELETE",
+
+                body:
+                    JSON.stringify({
+
+                        password
+
+                    })
+
+            }
+
+        );
+
+        const otp =
+            prompt(
+                "Enter the OTP sent to your email:"
+            );
+
+        if (!otp) {
+
+            return;
+
+        }
+
+        await api(
+
+            "/users/delete-account/verify-otp",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        otp
+
+                    })
+
+            }
+
+        );
+
+        setAuthentication(
+            null,
+            null
+        );
+
+        alert(
+            "Account deleted."
+        );
+
+        showHome();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+async function checkout() {
+
+    try {
+
+        const response =
+            await api(
+                "/add"
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const addresses =
+            Array.isArray(data)
+                ? data
+                : data.addresses ||
+                  data.rows ||
+                  [];
+
+        if (!addresses.length) {
+
+            alert(
+                "Please add a delivery address first."
+            );
+
+            showAddresses();
+
+            return;
+
+        }
+
+        openModal(`
+
+            <h2>
+                Checkout
+            </h2>
+
+            <div class="form-group">
+
+                <label>
+                    Delivery Address
+                </label>
+
+                <select
+                    class="input"
+                    id="checkoutAddress"
+                >
+
+                    ${
+                        addresses.map(
+
+                            address => `
+
+                                <option
+                                    value="${address.id}"
+                                >
+
+                                    ${
+                                        address.label ||
+                                        "Address"
+                                    }
+
+                                    -
+
+                                    ${
+                                        address.city ||
+                                        ""
+                                    }
+
+                                </option>
+
+                            `
+
+                        ).join("")
+                    }
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Payment Method
+                </label>
+
+                <select
+                    class="input"
+                    id="paymentMethod"
+                >
+
+                    <option value="COD">
+                        Cash on Delivery
+                    </option>
+
+                    <option value="ONLINE">
+                        Online Payment
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="placeOrder()"
+            >
+
+                Place Order
+
+            </button>
+
+        `);
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
+===================================================== */
+
+async function placeOrder() {
+
+    try {
+
+        if (!accessToken) {
+
+            closeModal();
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        const addressElement =
+            document.getElementById(
+                "checkoutAddress"
+            );
+
+        const paymentElement =
+            document.getElementById(
+                "paymentMethod"
+            );
+
+
+        if (!addressElement) {
+
+            alert(
+                "Please select a delivery address."
+            );
+
+            return;
+
+        }
+
+
+        if (!paymentElement) {
+
+            alert(
+                "Please select a payment method."
+            );
+
+            return;
+
+        }
+
+
+        const addressId =
+            Number(
+                addressElement.value
+            );
+
+
+        const paymentMethod =
+            paymentElement.value;
+
+
+        /*
+            Create the order first.
+        */
+
+        const response =
+            await api(
+
+                "/order",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            address_id:
+                                addressId,
+
+                            payment_method:
+                                paymentMethod,
+
+                            notes: ""
+
+                        })
+
+                }
+
+            );
+
+
+        console.log(
+            "PLACE ORDER RESPONSE:",
+            response
+        );
+
+
+        const order =
+            response?.data?.order ||
+            response?.data ||
+            response;
+
+
+        /*
+            Close checkout modal.
+        */
+
+        closeModal();
+
+
+        /*
+            ONLINE PAYMENT
+        */
+
+        if (
+            paymentMethod ===
+            "ONLINE"
+        ) {
+
+            await createPayment(
+                order
+            );
+
+            return;
+
+        }
+
+
+        /*
+            COD
+        */
+
+        alert(
+            "Order placed successfully."
+        );
+
+        showOrders();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Place order error:",
+            error
+        );
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+/* =====================================================
+   RAZORPAY ONLINE PAYMENT
+===================================================== */
+
+async function createPayment(
+    order
+) {
+
+    try {
+
+        if (!accessToken) {
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        /*
+            Get order ID from different
+            possible backend response structures.
+        */
+
+        const orderId =
+            Number(
+                order?.order_id ??
+                order?.orderId ??
+                order?.id
+            );
+
+
+        if (!orderId) {
+
+            console.error(
+                "Invalid order response:",
+                order
+            );
+
+            throw new Error(
+                "Order ID was not returned by the server."
+            );
+
+        }
+
+
+        console.log(
+            "Creating Razorpay payment for order:",
+            orderId
+        );
+
+
+        /*
+            Create Razorpay payment order
+        */
+
+        const paymentResponse =
+            await api(
+
+                "/pay/create",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            orderId:
+                                orderId,
+
+                            paymentMethod:
+                                "UPI",
+
+                            paymentGateway:
+                                "RAZORPAY"
+
+                        })
+
+                }
+
+            );
+
+
+        console.log(
+            "PAYMENT CREATE RESPONSE:",
+            paymentResponse
+        );
+
+
+        const payment =
+            paymentResponse?.data ||
+            paymentResponse;
+
+
+        /*
+            Validate Razorpay data
+        */
+
+        const razorpayKey =
+            payment.key ||
+            payment.razorpayKey;
+
+
+        const razorpayOrderId =
+            payment.razorpayOrderId ||
+            payment.gatewayOrderId;
+
+
+        const amount =
+            payment.amount;
+
+
+        const currency =
+            payment.currency ||
+            "INR";
+
+
+        const paymentId =
+            payment.paymentId;
+
+
+        if (
+            !razorpayKey ||
+            !razorpayOrderId ||
+            !amount ||
+            !paymentId
+        ) {
+
+            console.error(
+                "Invalid payment response:",
+                payment
+            );
+
+            throw new Error(
+                "Invalid Razorpay payment details received from server."
+            );
+
+        }
+
+
+        /*
+            Razorpay Checkout configuration
+        */
+
+        const options = {
+
+            key:
+                razorpayKey,
+
+            amount:
+                amount,
+
+            currency:
+                currency,
+
+            order_id:
+                razorpayOrderId,
+
+            name:
+                "Instant Delivery",
+
+            description:
+                `Online Payment - Order #${orderId}`,
+
+            theme: {
+
+                color:
+                    "#2563eb"
+
+            },
+
+
+            /*
+                Payment successful
+            */
+
+            handler:
+                async function (
+                    razorpayResponse
+                ) {
+
+                    try {
+
+                        console.log(
+                            "RAZORPAY RESPONSE:",
+                            razorpayResponse
+                        );
+
+
+                        /*
+                            Verify payment with backend
+                        */
+
+                        const verifyResponse =
+                            await api(
+
+                                "/pay/verify",
+
+                                {
+
+                                    method: "POST",
+
+                                    body:
+                                        JSON.stringify({
+
+                                            paymentId:
+                                                paymentId,
+
+                                            gatewayPaymentId:
+                                                razorpayResponse
+                                                    .razorpay_payment_id,
+
+                                            gatewayOrderId:
+                                                razorpayResponse
+                                                    .razorpay_order_id,
+
+                                            gatewaySignature:
+                                                razorpayResponse
+                                                    .razorpay_signature,
+
+                                            gatewayResponse:
+                                                razorpayResponse
+
+                                        })
+
+                                }
+
+                            );
+
+
+                        console.log(
+                            "PAYMENT VERIFY RESPONSE:",
+                            verifyResponse
+                        );
+
+
+                        if (
+                            verifyResponse.success
+                        ) {
+
+                            alert(
+                                "✅ Payment successful! Order placed."
+                            );
+
+
+                            /*
+                                Refresh cart count.
+                            */
+
+                            await updateCartCount();
+
+
+                            /*
+                                Show orders.
+                            */
+
+                            showOrders();
+
+                        }
+
+                        else {
+
+                            alert(
+                                "Payment verification failed."
+                            );
+
+                        }
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Payment verification error:",
+                            error
+                        );
+
+                        alert(
+                            "Payment was completed, but verification failed. Please check your order status."
+                        );
+
+                    }
+
+                },
+
+
+            /*
+                Razorpay closes
+            */
+
+            modal: {
+
+                ondismiss:
+                    function () {
+
+                        console.log(
+                            "Razorpay checkout closed."
+                        );
+
+                    }
+
+            }
+
+        };
+
+
+        /*
+            Open Razorpay
+        */
+
+        const razorpay =
+            new Razorpay(
+                options
+            );
+
+
+        razorpay.on(
+            "payment.failed",
+            function (
+                response
+            ) {
+
+                console.error(
+                    "Razorpay payment failed:",
+                    response
+                );
+
+                alert(
+                    "❌ Payment failed. Please try again."
+                );
+
+            }
+        );
+
+
+        razorpay.open();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Payment creation error:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Unable to start online payment."
+        );
+
+    }
+
+}
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+async function showOrders() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2>
+            My Orders
+        </h2>
+
+        <div
+            id="orders"
+            style="
+                margin-top:20px;
+            "
+        >
+
+            Loading...
+
+        </div>
+
+    `;
+
+    try {
+
+        const response =
+            await api(
+                "/order"
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const orders =
+            Array.isArray(data)
+                ? data
+                : data.orders ||
+                  data.rows ||
+                  [];
+
+        renderOrders(
+            orders
+        );
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "orders"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderOrders(
+    orders
+) {
+
+    if (!orders.length) {
+
+        document.getElementById(
+            "orders"
+        ).innerHTML = `
+
+            <div class="card center">
+
+                <h3>
+                    No orders yet.
+                </h3>
+
+                <button
+                    class="btn"
+                    style="margin-top:15px"
+                    onclick="showProducts()"
+                >
+
+                    Start Shopping
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    document.getElementById(
+        "orders"
+    ).innerHTML =
+        orders.map(
+
+            order => `
+
+                <div
+                    class="card"
+                    style="
+                        margin-bottom:15px;
+                    "
+                >
+
+                    <div
+                        style="
+                            display:flex;
+                            justify-content:
+                                space-between;
+                            gap:15px;
+                        "
+                    >
+
+                        <div>
+
+                            <h3>
+
+                                Order #
+
+                                ${
+                                    order.order_number ||
+                                    order.id
+                                }
+
+                            </h3>
+
+                            <p
+                                style="
+                                    color:#64748b;
+                                    margin-top:5px;
+                                "
+                            >
+
+                                ${
+                                    order.created_at ||
+                                    ""
+                                }
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="badge">
+
+                            ${
+                                order.order_status ||
+                                order.status ||
+                                "PLACED"
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="price"
+                        style="margin-top:15px"
+                    >
+
+                        ₹${
+                            Number(
+                                order.total_amount ||
+                                0
+                            ).toFixed(2)
+                        }
+
+                    </div>
+
+
+                    ${
+                        (
+                            order.order_status ||
+                            order.status
+                        ) !== "DELIVERED" &&
+                        (
+                            order.order_status ||
+                            order.status
+                        ) !== "CANCELLED"
+                            ?
+
+                            `
+                                <button
+                                    class="
+                                        btn
+                                        btn-danger
+                                    "
+                                    onclick="
+                                        cancelOrder(
+                                            ${order.id}
+                                        )
+                                    "
+                                >
+
+                                    Cancel Order
+
+                                </button>
+                            `
+
+                            :
+
+                            ""
+
+                    }
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =====================================================
+   CANCEL ORDER
+===================================================== */
+
+async function cancelOrder(
+    orderId
+) {
+
+    if (
+        !confirm(
+            "Cancel this order?"
+        )
+    ) {
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            `/order/${orderId}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+        alert(
+            "Order cancelled."
+        );
+
+        showOrders();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(
+    html
+) {
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML =
+        html;
+
+    document.getElementById(
+        "modal"
+    ).classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function closeModal() {
+
+    document.getElementById(
+        "modal"
+    ).classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateNavigation();
+
+showHome();
+
+if (accessToken) {
+
+    updateCartCount();
+
+}
+
+</script>
+
+</body>
+
+</html>

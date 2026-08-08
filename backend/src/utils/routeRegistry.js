@@ -1,35 +1,39 @@
 const routes = [];
 
-// Register a route with its allowed methods
-
+/**
+ * Register a route for automatic API documentation.
+ *
+ * @param {string} method
+ * @param {string} path
+ * @param {object} options
+ */
 const registerRoute = (
-
     method,
-
-    path
-
+    path,
+    options = {}
 ) => {
 
+    const normalizedMethod = method.toUpperCase();
+
     const existing = routes.find(
-
-        route => route.path === path
-
+        route =>
+            route.path === path &&
+            route.methods.includes(normalizedMethod)
     );
 
     if (existing) {
+        return;
+    }
 
-        if (
+    const route = routes.find(
+        route => route.path === path
+    );
 
-            !existing.methods.includes(method)
+    if (route) {
 
-        ) {
-
-            existing.methods.push(method);
-
-        }
+        route.methods.push(normalizedMethod);
 
         return;
-
     }
 
     routes.push({
@@ -37,23 +41,41 @@ const registerRoute = (
         path,
 
         methods: [
+            normalizedMethod
+        ],
 
-            method
-
-        ]
+        ...options
 
     });
 
 };
 
-// Get all routes
+/**
+ * Get all registered routes.
+ */
+const getRoutes = () => {
 
-const getRoutes = () => routes;
+    return routes;
+
+};
+
+/**
+ * Clear all registered routes.
+ *
+ * Useful for testing or rebuilding documentation.
+ */
+const clearRoutes = () => {
+
+    routes.length = 0;
+
+};
 
 module.exports = {
 
     registerRoute,
 
-    getRoutes
+    getRoutes,
+
+    clearRoutes
 
 };

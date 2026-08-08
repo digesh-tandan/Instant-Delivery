@@ -1,10 +1,9 @@
 const express = require("express");
 
 const {
-
     registerRoute
-
 } = require("./routeRegistry");
+
 
 const createRouter = (basePath) => {
 
@@ -13,22 +12,24 @@ const createRouter = (basePath) => {
     const methods = [
 
         "get",
-
         "post",
-
         "put",
-
         "patch",
-
         "delete"
 
     ];
 
+
     methods.forEach((method) => {
 
-        const original = router[method].bind(router);
+        const original =
+            router[method].bind(router);
 
-        router[method] = (path, ...handlers) => {
+
+        router[method] = (
+            path,
+            ...handlers
+        ) => {
 
             registerRoute(
 
@@ -37,6 +38,7 @@ const createRouter = (basePath) => {
                 basePath + path
 
             );
+
 
             return original(
 
@@ -50,8 +52,10 @@ const createRouter = (basePath) => {
 
     });
 
+
     return router;
 
 };
+
 
 module.exports = createRouter;

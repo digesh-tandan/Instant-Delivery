@@ -7,6 +7,12 @@ const path = require("path");
 
 const statusCodes = require("./constants/statusCodes");
 
+const generateOpenAPI = require("./utils/openapiGenerator");
+
+const {
+    apiReference
+} = require("@scalar/express-api-reference");
+
 // Routes
 const authRoutes = require("./routes/auth/auth.routes");
 const profileRoutes = require("./routes/profile/profile.routes");
@@ -201,6 +207,30 @@ app.use("/api/v1/pay",paymentRoutes);
 app.use("/api/v1/delivery",deliveryPersonRoutes);
 
 app.use("/api/v1/store",storeManagerApplicationRoutes);
+
+// Generate OpenAPI specification
+app.get(
+    "/openapi.json",
+    (req, res) => {
+
+        const openapi =
+            generateOpenAPI();
+
+        res.json(openapi);
+
+    }
+);
+
+
+// Scalar API Documentation
+app.use(
+    "/docs",
+    apiReference({
+
+        url: "/openapi.json"
+
+    })
+);
 
 // Invalid URL
 app.use(notFound);
