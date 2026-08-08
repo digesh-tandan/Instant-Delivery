@@ -17,6 +17,9 @@ const {
 
 const AUTH_MESSAGES = require("../../constants/authMessages");
 
+const NotificationService =
+    require("../../services/notification");
+
 // Validate Login
 
 const validateLogin = async (
