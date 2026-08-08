@@ -179,94 +179,118 @@ class CartItemModel {
     }
 
     static async getCartItems(cartId) {
-
+    
         const [rows] = await pool.execute(
-
+        
             `
             SELECT
-                    
+        
                 ci.id AS item_id,
-                    
+        
                 ci.cart_id,
-                    
+        
                 ci.variant_id,
-                    
+        
                 ci.quantity,
-                    
+        
                 p.id AS product_id,
-                    
+        
                 p.name AS product_name,
-                    
+        
                 pv.variant_name,
-                    
+        
                 pv.sku,
-                    
+        
                 pv.mrp,
-                    
+        
                 pv.selling_price,
-                    
+        
                 pv.final_price,
-                    
+        
                 pv.stock_quantity,
-                    
+        
                 b.name AS brand_name,
-                    
+        
                 pi.image_url AS product_image,
-                    
+        
                 (pv.final_price * ci.quantity) AS total_price
-                    
+        
             FROM cart_items ci
-                    
+        
             INNER JOIN product_variants pv
                 ON pv.id = ci.variant_id
-                    
+        
             INNER JOIN products p
                 ON p.id = pv.product_id
-                    
+        
             LEFT JOIN brands b
                 ON b.id = p.brand_id
-                    
-            LEFT JOIN product_images pi
-                ON pi.id = (
-                    
-                    SELECT id
-                    
+        
+            LEFT JOIN (
+        
+                SELECT
+        
+                    id,
+        
+                    variant_id,
+        
+                    image_url
+        
+                FROM (
+        
+                    SELECT
+        
+                        id,
+        
+                        variant_id,
+        
+                        image_url,
+        
+                        ROW_NUMBER() OVER (
+        
+                            PARTITION BY variant_id
+        
+                            ORDER BY
+        
+                                is_primary DESC,
+        
+                                display_order ASC,
+        
+                                id ASC
+        
+                        ) AS rn
+        
                     FROM product_images
-                    
-                    WHERE variant_id = pv.id
-                    AND deleted_at IS NULL
-                    
-                    ORDER BY
-                    
-                        is_primary DESC,
-                    
-                        display_order ASC,
-                    
-                        id ASC
-                    
-                    LIMIT 1
-                    
-                )
-                    
+        
+                    WHERE deleted_at IS NULL
+        
+                ) ranked_images
+        
+                WHERE rn = 1
+        
+            ) pi
+        
+                ON pi.variant_id = pv.id
+        
             WHERE
-                    
+        
                 ci.cart_id = ?
-                    
+        
             ORDER BY
-                    
+        
                 ci.created_at DESC;
             `,
-
+        
             [
-
+            
                 cartId
-
+            
             ]
-
+        
         );
-
+    
         return rows;
-
+    
     }
 
 }
