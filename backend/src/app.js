@@ -33,36 +33,49 @@ const app = express();
 
 // Global Middlewares
 
-const allowedOrigins = [
-
-    "http://localhost:5173",
-
-    "http://127.0.0.1:5500",
-
-    "http://localhost:5500"
-
-];
-
-if (process.env.FRONTEND_URL) {
-
-    allowedOrigins.push(
-
-        process.env.FRONTEND_URL
-
-    );
-
-}
-
 app.use(
-
     cors({
+        origin: function (origin, callback) {
 
-        origin: allowedOrigins,
+            const allowedOrigins = [
+                "http://localhost:5173",
+                "http://127.0.0.1:5500",
+                "http://localhost:5500",
+                process.env.FRONTEND_URL
+            ].filter(Boolean);
 
-        credentials: true
+            if (!origin) {
+                return callback(null, true);
+            }
 
+            if (allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            }
+
+            console.error("CORS blocked:", origin);
+
+            return callback(
+                new Error(`CORS blocked for origin: ${origin}`)
+            );
+        },
+
+        credentials: true,
+
+        methods: [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS"
+        ],
+
+        allowedHeaders: [
+            "Content-Type",
+            "Authorization",
+            "Cookie"
+        ]
     })
-
 );
 
 app.use(helmet());
