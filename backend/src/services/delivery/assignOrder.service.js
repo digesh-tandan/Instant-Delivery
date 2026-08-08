@@ -128,7 +128,7 @@ const assignOrder = async (req) => {
 
                 delivery_partner_id: partner.id,
 
-                status: DELIVERY_STATUS.ASSIGNED
+                status: DELIVERY_STATUS.ASSIGNED && DELIVERY_STATUS.CONFIRMED,
 
             },
 
