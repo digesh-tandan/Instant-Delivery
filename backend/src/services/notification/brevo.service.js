@@ -1,100 +1,176 @@
+const {
+    BrevoClient
+} = require("@getbrevo/brevo");
+
+
 const brevo =
-require("@getbrevo/brevo");
+    new BrevoClient({
 
-const apiInstance =
-new brevo.TransactionalEmailsApi();
+        apiKey:
+            process.env.BREVO_API_KEY,
 
-apiInstance.setApiKey(
+        timeoutInSeconds:
+            15,
 
-    brevo.TransactionalEmailsApiApiKeys.apiKey,
+        maxRetries:
+            1
 
-    process.env.BREVO_API_KEY
+    });
 
-);
 
 const sendMail =
-async (
+    async (
 
-    to,
+        to,
 
-    subject,
+        subject,
 
-    html
+        html,
 
-) => {
+        firstName = null
 
-    try {
+    ) => {
 
-        console.log("\n==============================");
+        try {
 
-        console.log("Sending Email");
+            console.log(
+                "\n================================"
+            );
 
-        console.log("To:", to);
+            console.log(
+                "Sending Email via Brevo API"
+            );
 
-        console.log("Subject:", subject);
+            console.log(
+                "To:",
+                to
+            );
 
-        console.time("Email");
+            console.log(
+                "From:",
+                process.env.MAIL_FROM
+            );
 
-        const result =
-            await apiInstance.sendTransacEmail({
+            console.log(
+                "Subject:",
+                subject
+            );
 
-                sender: {
+            console.time(
+                "Brevo Email"
+            );
 
-                    email:
-                        process.env.MAIL_FROM,
 
-                    name:
-                        process.env.MAIL_FROM_NAME
+            const response =
+                await brevo
+                    .transactionalEmails
+                    .sendTransacEmail({
 
-                },
+                        sender: {
 
-                to: [
+                            name:
+                                process.env.MAIL_FROM_NAME ||
+                                "Instant Delivery",
 
-                    {
+                            email:
+                                process.env.MAIL_FROM
 
-                        email: to
+                        },
 
-                    }
+                        to: [
 
-                ],
+                            {
 
-                subject,
+                                email: to,
 
-                htmlContent: html
+                                ...(firstName
+                                    ? {
+                                        name: firstName
+                                    }
+                                    : {})
 
-            });
+                            }
 
-        console.timeEnd("Email");
+                        ],
 
-        console.log("Email Sent Successfully");
+                        subject,
 
-        console.log(result.body);
+                        htmlContent:
+                            html
 
-        console.log("==============================\n");
+                    });
 
-        return result.body;
 
-    }
+            console.timeEnd(
+                "Brevo Email"
+            );
 
-    catch (error) {
 
-        console.error("\nEmail Sending Failed");
+            console.log(
+                "✅ Email Sent Successfully"
+            );
 
-        console.error(error.response?.body || error);
+            console.log(
+                "Message ID:",
+                response.messageId
+            );
 
-        throw new Error(
+            console.log(
+                "================================\n"
+            );
 
-            error.response?.body?.message ||
 
-            error.message ||
+            return response;
 
-            "Unable to send email."
+        }
 
-        );
+        catch (error) {
 
-    }
+            console.timeEnd(
+                "Brevo Email"
+            );
 
-};
+
+            console.error(
+                "\n❌ Brevo Email Sending Failed"
+            );
+
+
+            console.error(
+                "Message:",
+                error.message
+            );
+
+
+            console.error(
+                "Status Code:",
+                error.statusCode
+            );
+
+
+            console.error(
+                "Response Body:",
+                error.body
+            );
+
+
+            console.error(
+                "================================\n"
+            );
+
+
+            throw new Error(
+
+                error.message ||
+
+                "Unable to send email."
+
+            );
+
+        }
+
+    };
+
 
 module.exports = {
 
