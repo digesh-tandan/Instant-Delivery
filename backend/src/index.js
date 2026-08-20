@@ -6,18 +6,31 @@ const {
     testConnection
 } = require("./config/database");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 (async () => {
 
-    await testConnection();
+    try {
 
-    app.listen(PORT, () => {
+        await testConnection();
 
-        console.log(
-            `Server running on port ${PORT}`
+        app.listen(PORT, "0.0.0.0", () => {
+
+            console.log(
+                `Server running on 0.0.0.0:${PORT}`
+            );
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Server startup failed:",
+            error
         );
 
-    });
+        process.exit(1);
+
+    }
 
 })();
