@@ -3,929 +3,6388 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Instant Delivery Payment</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Instant Delivery</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
 
-<style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+    <style>
 
-body{
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-background:linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
 
-min-height:100vh;
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
 
-display:flex;
+        button {
+            cursor: pointer;
+        }
 
-flex-direction:column;
+        .navbar {
 
-justify-content:center;
+            background: #ffffff;
 
-align-items:center;
+            border-bottom:
+                1px solid #e2e8f0;
 
-padding:20px;
+            padding:
+                15px 6%;
 
-}
+            display: flex;
 
-.container{
+            align-items: center;
 
-width:100%;
+            justify-content: space-between;
 
-max-width:1080px;
+            position: sticky;
 
-display:grid;
+            top: 0;
 
-grid-template-columns:1fr 1fr;
+            z-index: 100;
 
-gap:30px;
+        }
 
-margin-bottom:20px;
+        .logo {
 
-}
+            font-size: 22px;
 
-.left{
+            font-weight: 800;
 
-background:rgba(255,255,255,.08);
+            color: #2563eb;
 
-backdrop-filter:blur(20px);
+            cursor: pointer;
 
-border-radius:20px;
+        }
 
-padding:30px;
+        .logo span {
+            color: #111827;
+        }
 
-color:white;
+        .nav-links {
 
-box-shadow:0 10px 40px rgba(0,0,0,.35);
+            display: flex;
 
-}
+            gap: 8px;
 
-.right{
+            align-items: center;
 
-background:white;
+        }
 
-border-radius:20px;
+        .nav-links button {
 
-padding:30px;
+            border: none;
 
-box-shadow:0 20px 60px rgba(0,0,0,.25);
+            background: transparent;
 
-}
+            padding: 9px 12px;
 
-.logo{
+            border-radius: 8px;
 
-font-size:40px;
+            color: #475569;
 
-margin-bottom:15px;
+        }
 
-}
+        .nav-links button:hover {
 
-.title{
+            background: #eff6ff;
 
-font-size:30px;
+            color: #2563eb;
 
-font-weight:700;
+        }
 
-margin-bottom:10px;
+        .container {
 
-}
+            max-width: 1200px;
 
-.subtitle{
+            margin: auto;
 
-opacity:.8;
+            padding: 30px 20px;
 
-line-height:1.7;
+            min-height: 75vh;
 
-margin-bottom:22px;
+        }
 
-}
+        .hero {
 
-.feature{
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
 
-display:flex;
+            color: white;
 
-gap:15px;
+            border-radius: 20px;
 
-margin-bottom:12px;
+            padding: 45px;
 
-align-items:center;
+            margin-bottom: 30px;
 
-}
+        }
 
-.circle{
+        .hero h1 {
 
-width:45px;
+            font-size: 42px;
 
-height:45px;
+            margin-bottom: 12px;
 
-border-radius:50%;
+        }
 
-background:#22c55e;
+        .hero p {
 
-display:flex;
+            max-width: 650px;
 
-justify-content:center;
+            line-height: 1.7;
 
-align-items:center;
+            opacity: .9;
 
-font-size:20px;
+        }
 
-}
+        .hero button {
 
-.status{
+            margin-top: 20px;
 
-background:#f1f5f9;
+        }
 
-padding:15px;
+        .btn {
 
-border-radius:12px;
+            border: none;
 
-margin-bottom:20px;
+            padding: 11px 17px;
 
-display:flex;
+            border-radius: 9px;
 
-justify-content:space-between;
+            font-weight: 600;
 
-align-items:center;
+            background: #2563eb;
 
-}
+            color: white;
 
-.badge{
+        }
 
-padding:6px 14px;
+        .btn:hover {
+            opacity: .9;
+        }
 
-background:#ef4444;
+        .btn-secondary {
 
-color:white;
+            background: #e2e8f0;
 
-border-radius:50px;
+            color: #334155;
 
-font-size:13px;
+        }
 
-}
+        .btn-danger {
 
-label{
+            background: #dc2626;
 
-font-weight:600;
+            color: white;
 
-display:block;
+        }
 
-margin-bottom:8px;
+        .btn-success {
 
-}
+            background: #16a34a;
 
-input{
+            color: white;
 
-width:100%;
+        }
 
-padding:14px;
+        .card {
 
-border-radius:10px;
+            background: white;
 
-border:1px solid #ddd;
+            border:
+                1px solid #e2e8f0;
 
-font-size:16px;
+            border-radius: 15px;
 
-margin-bottom:20px;
+            padding: 20px;
 
-outline:none;
+        }
 
-}
+        .grid {
 
-input:focus{
+            display: grid;
 
-border-color:#2563eb;
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
 
-}
+            gap: 18px;
 
-select{
+        }
 
-width:100%;
+        .feature {
 
-padding:14px;
+            text-align: center;
 
-border-radius:10px;
+            padding: 25px;
 
-border:1px solid #ddd;
+        }
 
-font-size:16px;
+        .feature-icon {
 
-margin-bottom:20px;
+            font-size: 35px;
 
-outline:none;
+            margin-bottom: 10px;
 
-}
+        }
 
-select:focus{
+        .form-container {
 
-border-color:#2563eb;
+            max-width: 520px;
 
-}
+            margin:
+                20px auto;
 
-button{
+            background: white;
 
-width:100%;
+            border:
+                1px solid #e2e8f0;
 
-padding:16px;
+            border-radius: 16px;
 
-border:none;
+            padding: 28px;
 
-border-radius:12px;
+        }
 
-font-size:17px;
+        .form-container h2 {
 
-font-weight:600;
+            margin-bottom: 8px;
 
-cursor:pointer;
+        }
 
-background:linear-gradient(90deg,#2563eb,#4f46e5);
+        .subtitle {
 
-color:white;
+            color: #64748b;
 
-transition:.3s;
+            font-size: 14px;
 
-}
+            margin-bottom: 20px;
 
-button:hover{
+        }
 
-transform:translateY(-2px);
+        .form-group {
 
-}
+            margin-bottom: 15px;
 
-button:disabled{
+        }
 
-opacity:.6;
+        .form-group label {
 
-cursor:not-allowed;
+            display: block;
 
-}
+            font-size: 13px;
 
-.loader{
+            font-weight: 600;
 
-display:none;
+            margin-bottom: 6px;
 
-margin-top:20px;
+        }
 
-text-align:center;
+        .input {
 
-}
+            width: 100%;
 
-.spinner{
+            padding: 12px;
 
-width:45px;
+            border:
+                1px solid #cbd5e1;
 
-height:45px;
+            border-radius: 9px;
 
-border:5px solid #ddd;
+            outline: none;
 
-border-top:5px solid #2563eb;
+        }
 
-border-radius:50%;
+        .input:focus {
 
-margin:auto;
+            border-color: #2563eb;
 
-animation:spin 1s linear infinite;
+        }
 
-}
+        .row {
 
-@keyframes spin{
+            display: grid;
 
-100%{
+            grid-template-columns:
+                1fr 1fr;
 
-transform:rotate(360deg);
+            gap: 12px;
 
-}
+        }
 
-}
+        .products {
 
-.response{
+            display: grid;
 
-margin-top:25px;
+            grid-template-columns:
+                repeat(
+                    4,
+                    1fr
+                );
 
-background:#111827;
+            gap: 18px;
 
-color:#00ff90;
+        }
 
-padding:15px;
+        .product {
 
-border-radius:10px;
+            background: white;
 
-height:180px;
+            border:
+                1px solid #e2e8f0;
 
-overflow:auto;
+            border-radius: 14px;
 
-font-size:13px;
+            overflow: hidden;
 
-white-space:pre-wrap;
+        }
 
-}
+        .product-image {
 
-.success{
+            height: 170px;
 
-background:#22c55e !important;
+            display: flex;
 
-}
+            align-items: center;
 
-.error{
+            justify-content: center;
 
-background:#ef4444 !important;
+            background: #eff6ff;
 
-}
+            font-size: 60px;
 
-@media(max-width:900px){
+        }
 
-.container{
+        .product-body {
 
-grid-template-columns:1fr;
+            padding: 16px;
 
-}
+        }
 
-}
+        .product-body h3 {
 
-/* ===========================================
-                FOOTER
-=========================================== */
+            font-size: 16px;
 
-.footer{
+            margin-bottom: 6px;
 
-width:100%;
+        }
 
-max-width:1100px;
+        .price {
 
-padding:18px 30px;
+            font-size: 18px;
 
-background:rgba(255,255,255,.08);
+            font-weight: 700;
 
-backdrop-filter:blur(18px);
+            margin:
+                10px 0;
 
-border-radius:18px;
+        }
 
-box-shadow:0 10px 30px rgba(0,0,0,.25);
+        .search-box {
 
-color:white;
+            display: flex;
 
-}
+            gap: 10px;
 
-.footer-content{
+            margin-bottom: 20px;
 
-display:flex;
+        }
 
-justify-content:space-between;
+        .search-box .input {
+            flex: 1;
+        }
 
-align-items:center;
+        .cart-item {
 
-flex-wrap:wrap;
+            display: grid;
 
-}
+            grid-template-columns:
+                1fr
+                auto
+                auto;
 
-.footer-left{
+            align-items: center;
 
-font-size:15px;
+            gap: 20px;
 
-}
+            padding: 18px 0;
 
-.footer-left strong{
+            border-bottom:
+                1px solid #e2e8f0;
 
-color:#60a5fa;
+        }
 
-}
+        .quantity {
 
-.footer-left small{
+            display: flex;
 
-display:block;
+            align-items: center;
 
-margin-top:6px;
+            gap: 8px;
 
-opacity:.75;
+        }
 
-}
+        .quantity button {
 
-.footer-right{
+            width: 30px;
 
-display:flex;
+            height: 30px;
 
-align-items:center;
+            border: none;
 
-gap:16px;
+            border-radius: 7px;
 
-}
+            background: #eff6ff;
 
-.footer-right a{
+            color: #2563eb;
 
-display:flex;
+            font-weight: bold;
 
-align-items:center;
+        }
 
-gap:8px;
+        .total {
 
-padding:10px 18px;
+            margin-top: 20px;
 
-border-radius:12px;
+            padding: 20px;
 
-background:rgba(255,255,255,.08);
+            background: #f1f5f9;
 
-color:white;
+            border-radius: 12px;
 
-text-decoration:none;
+            display: flex;
 
-transition:.3s;
+            justify-content: space-between;
 
-font-weight:500;
+            align-items: center;
 
-}
+        }
 
-.footer-right a:hover{
+        .address {
 
-background:#2563eb;
+            border:
+                1px solid #e2e8f0;
 
-transform:translateY(-2px);
+            padding: 18px;
 
-}
+            border-radius: 12px;
 
-.footer-right a:last-child{
+            margin-bottom: 12px;
 
-background:#0f766e;
+        }
 
-}
+        .badge {
 
-.footer-right a:last-child:hover{
+            display: inline-block;
 
-background:#14b8a6;
+            padding:
+                5px 9px;
 
-}
+            border-radius: 20px;
 
-</style>
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+        .badge-success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+        .badge-danger {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+        }
+
+        .alert {
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+
+        }
+
+        .alert-error {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+        }
+
+        .alert-success {
+
+            background: #dcfce7;
+
+            color: #166534;
+
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .55
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 200;
+
+        }
+
+        .modal-box {
+
+            background: white;
+
+            width: 100%;
+
+            max-width: 550px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+        }
+
+        .footer {
+
+            background: #0f172a;
+
+            color: #cbd5e1;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 30px;
+
+        }
+
+        .footer a {
+
+            color: #93c5fd;
+
+            text-decoration: none;
+
+            margin: 0 8px;
+
+        }
+
+        @media(max-width: 900px) {
+
+            .grid,
+            .products {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+        }
+
+        @media(max-width: 600px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+            }
+
+            .nav-links {
+
+                overflow-x: auto;
+
+                width: 100%;
+
+            }
+
+            .grid,
+            .products,
+            .row {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .hero {
+
+                padding: 28px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 30px;
+
+            }
+
+            .cart-item {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    
+        /* =====================================================
+           INTEGRATED PAYMENT GATEWAY
+        ===================================================== */
+
+        .payment-page {
+            width: 100%;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .payment-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .payment-left {
+            background: linear-gradient(
+                135deg,
+                #0f172a,
+                #1e293b,
+                #312e81
+            );
+            border-radius: 20px;
+            padding: 35px;
+            color: white;
+            box-shadow: 0 15px 45px rgba(15, 23, 42, .25);
+        }
+
+        .payment-right {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 45px rgba(15, 23, 42, .10);
+        }
+
+        .payment-logo {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .payment-title {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .payment-subtitle {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .payment-feature {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 14px;
+            align-items: center;
+        }
+
+        .payment-circle {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .payment-status {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-badge {
+            padding: 6px 14px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .payment-badge.success {
+            background: #22c55e;
+        }
+
+        .payment-badge.error {
+            background: #ef4444;
+        }
+
+        .payment-loader {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .payment-spinner {
+            width: 45px;
+            height: 45px;
+            border: 5px solid #ddd;
+            border-top: 5px solid #2563eb;
+            border-radius: 50%;
+            margin: auto;
+            animation: paymentSpin 1s linear infinite;
+        }
+
+        @keyframes paymentSpin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .payment-response {
+            margin-top: 25px;
+            background: #111827;
+            color: #00ff90;
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 180px;
+            max-height: 280px;
+            overflow: auto;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        .payment-footer {
+            margin-top: 30px;
+            padding: 18px 25px;
+            background: #0f172a;
+            border-radius: 18px;
+            color: white;
+        }
+
+        .payment-footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .payment-footer-left strong {
+            color: #60a5fa;
+        }
+
+        .payment-footer-left small {
+            display: block;
+            margin-top: 6px;
+            color: #cbd5e1;
+        }
+
+        .payment-footer-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .payment-footer-right a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.08);
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+        .payment-footer-right a:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .payment-footer-right a:last-child {
+            background: #0f766e;
+        }
+
+        .payment-footer-right a:last-child:hover {
+            background: #14b8a6;
+        }
+
+        @media(max-width: 900px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .payment-footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .payment-footer-right {
+                justify-content: center;
+            }
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div class="container">
+<nav class="navbar">
+
+    <div
+        class="logo"
+        onclick="showHome()"
+    >
+
+        🛒 Instant<span>Delivery</span>
+
+    </div>
+
+    <div class="nav-links">
+
+        <button onclick="showHome()">
+            Home
+        </button>
+
+        <button onclick="showProducts()">
+            Products
+        </button>
+
+        <button onclick="showCart()">
+            🛒 Cart
+            <span id="cartCount"></span>
+        </button>
+
+        <button
+            id="ordersButton"
+            class="hidden"
+            onclick="showOrders()"
+        >
+            Orders
+        </button>
+
+        <button
+            id="paymentButton"
+            class="hidden"
+            onclick="showPaymentGateway()"
+        >
+            Payment
+        </button>
+
+        <button
+            id="profileButton"
+            class="hidden"
+            onclick="showProfile()"
+        >
+            Profile
+        </button>
+
+        <button
+            id="loginButton"
+            onclick="showLogin()"
+        >
+            Login
+        </button>
+
+        <button
+            id="registerButton"
+            onclick="showRegister()"
+        >
+            Register
+        </button>
+
+        <button
+            id="logoutButton"
+            class="hidden"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main
+    class="container"
+    id="app"
+></main>
 
-<div class="left">
-
-<div class="logo">🛒</div>
-
-<div class="title">
-
-Instant Delivery
-
-</div>
-
-<div class="subtitle">
-
-Fast, Secure and Reliable Payment Gateway Demo using Razorpay.
-
-Login automatically, create payment, launch checkout and verify payment within seconds.
-
-</div>
-
-<div class="feature">
-
-<div class="circle">✓</div>
-
-<div>Automatic Customer Login</div>
-
-</div>
-
-<div class="feature">
-
-<div class="circle">✓</div>
-
-<div>Create Razorpay Order</div>
-
-</div>
-
-<div class="feature">
-
-<div class="circle">✓</div>
-
-<div>Secure Signature Verification</div>
-
-</div>
-
-<div class="feature">
-
-<div class="circle">✓</div>
-
-<div>Payment Status Tracking</div>
-
-</div>
-
-</div>
-
-<div class="right">
-
-<h2 style="margin-bottom:25px">
-
-Payment Checkout
-
-</h2>
-
-<div class="status">
-
-<div>
-
-API Status
-
-</div>
-
-<div class="badge" id="status">
-
-Disconnected
-
-</div>
-
-</div>
-
-<label>
-
-Payment Type
-
-</label>
-
-<select id="paymentType">
-
-    <option value="create">
-
-        Fresh Payment
-
-    </option>
-
-    <option value="retry">
-
-        Retry Payment
-
-    </option>
-
-</select>
-
-<label>
-
-Order ID
-
-</label>
-
-<input
-
-type="number"
-
-id="orderId"
-
-placeholder="Enter Order ID"
-
->
-
-<button
-
-id="payBtn"
-
-onclick="pay()"
-
->
-
-Proceed To Pay
-
-</button>
-
-<div class="loader" id="loader">
-
-<div class="spinner"></div>
-
-<p style="margin-top:15px">
-
-Processing...
-
-</p>
-
-</div>
 
 <div
-
-class="response"
-
-id="response"
-
+    id="modal"
+    class="modal hidden"
 >
 
-Waiting for payment...
+    <div
+        class="modal-box"
+        id="modalContent"
+    ></div>
 
 </div>
 
-</div>
 
-</div>
+<footer class="footer">
+
+    <p>
+        © 2026 Instant Delivery
+    </p>
+
+    <p style="margin-top:8px">
+
+        <a
+            href="https://github.com/digesh-tandan/Instant-Delivery"
+            target="_blank"
+        >
+            GitHub
+        </a>
+
+        <a
+            href="https://instant-delivery-backend-e2lq.onrender.com/docs"
+            target="_blank"
+        >
+            API Documentation
+        </a>
+
+    </p>
+
+</footer>
+
 
 <script>
 
-const API="https://instant-delivery-backend-e2lq.onrender.com/api/v1";
+/* =====================================================
+   CONFIGURATION
+===================================================== */
 
-function log(data){
+const API_BASE =
+    "https://instant-delivery-backend-e2lq.onrender.com/api/v1";
 
-document.getElementById("response").textContent=
 
-JSON.stringify(data,null,4);
+/* =====================================================
+   STATE
+===================================================== */
 
-}
+let accessToken =
+    localStorage.getItem(
+        "accessToken"
+    );
 
-function loading(show){
+let currentUser =
+    JSON.parse(
+        localStorage.getItem(
+            "user"
+        ) || "null"
+    );
 
-document.getElementById("loader").style.display=
 
-show?"block":"none";
+/* =====================================================
+   API HELPER
+===================================================== */
 
-document.getElementById("payBtn").disabled=show;
+async function api(
 
-}
+    endpoint,
 
-async function pay(){
+    options = {}
 
-loading(true);
+) {
 
-try{
+    const headers = {
 
-const paymentType =
+        "Content-Type":
+            "application/json",
 
-document.getElementById(
+        ...(options.headers || {})
 
-"paymentType"
+    };
 
-).value;
+    if (accessToken) {
 
-const endpoint =
+        headers.Authorization =
+            `Bearer ${accessToken}`;
 
-paymentType === "retry"
+    }
 
-?
+    const response =
+        await fetch(
 
-"/pay/retry"
+            API_BASE +
+            endpoint,
 
-:
+            {
 
-"/pay/create";
+                ...options,
 
-const login=await fetch(
+                headers
 
-API+"/auth/login",
+            }
 
-{
+        );
 
-method:"POST",
+    const text =
+        await response.text();
 
-headers:{
+    let data = {};
 
-"Content-Type":"application/json"
+    try {
 
-},
+        data =
+            text
+                ? JSON.parse(text)
+                : {};
 
-body:JSON.stringify({
+    }
 
-email:"digeshtandan9212@gmail.com",
+    catch {
 
-password:"Digesh@123"
+        data = {
+            message: text
+        };
 
-})
+    }
 
-}
+    if (!response.ok) {
 
-);
+        throw new Error(
 
-const loginData=await login.json();
+            data.message ||
 
-const token=loginData.data.accessToken;
+            data.error ||
 
-document.getElementById("status").innerHTML="Connected";
+            "Something went wrong."
 
-document.getElementById("status").className="badge success";
+        );
 
-const payment=await fetch(
+    }
 
-API+endpoint,
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json",
-
-Authorization:"Bearer "+token
-
-},
-
-body:JSON.stringify(
-
-paymentType==="create"
-
-?
-
-{
-
-orderId:Number(
-
-document.getElementById("orderId").value
-
-),
-
-paymentMethod:"UPI",
-
-paymentGateway:"RAZORPAY"
+    return data;
 
 }
 
-:
 
-{
+/* =====================================================
+   AUTH STATE
+===================================================== */
 
-orderId:Number(
+function setAuthentication(
 
-document.getElementById("orderId").value
+    token,
 
-)
+    user
 
-}
+) {
 
-)
+    accessToken =
+        token;
 
-}
+    currentUser =
+        user;
 
-);
+    if (token) {
 
-const paymentData=await payment.json();
+        localStorage.setItem(
+            "accessToken",
+            token
+        );
 
-log(paymentData);
+    }
 
-loading(false);
+    else {
 
-const options={
+        localStorage.removeItem(
+            "accessToken"
+        );
 
-key:paymentData.data.key,
+    }
 
-amount:paymentData.data.amount,
+    if (user) {
 
-currency:paymentData.data.currency,
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
 
-order_id:paymentData.data.razorpayOrderId,
+    }
 
-name:"Instant Delivery",
+    else {
 
-description:"Online Payment",
+        localStorage.removeItem(
+            "user"
+        );
 
-theme:{
+    }
 
-color:"#2563eb"
-
-},
-
-handler:async function(response){
-
-loading(true);
-
-const verify=await fetch(
-
-API+"/pay/verify",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json",
-
-Authorization:"Bearer "+token
-
-},
-
-body:JSON.stringify({
-
-paymentId:paymentData.data.paymentId,
-
-gatewayPaymentId:response.razorpay_payment_id,
-
-gatewayOrderId:response.razorpay_order_id,
-
-gatewaySignature:response.razorpay_signature,
-
-gatewayResponse:response
-
-})
+    updateNavigation();
 
 }
 
-);
 
-const verifyData=await verify.json();
+function updateNavigation() {
 
-loading(false);
+    const loggedIn =
+        Boolean(accessToken);
 
-log(verifyData);
+    document
+        .getElementById(
+            "loginButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            loggedIn
+        );
 
-if(verifyData.success){
+    document
+        .getElementById(
+            "registerButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            loggedIn
+        );
 
-alert("✅ Payment Successful");
+    document
+        .getElementById(
+            "logoutButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            !loggedIn
+        );
 
-}else{
+    document
+        .getElementById(
+            "profileButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            !loggedIn
+        );
 
-alert("❌ Payment Failed");
+    document
+        .getElementById(
+            "ordersButton"
+        )
+        .classList
+        .toggle(
+            "hidden",
+            !loggedIn
+        );
+
+    const paymentButton =
+        document.getElementById(
+            "paymentButton"
+        );
+
+    if (paymentButton) {
+
+        paymentButton.classList.toggle(
+            "hidden",
+            !loggedIn
+        );
+
+    }
 
 }
 
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function showHome() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <section class="hero">
+
+            <h1>
+                Groceries delivered fast.
+            </h1>
+
+            <p>
+
+                Order your daily essentials
+                from Instant Delivery and
+                get them delivered quickly
+                to your doorstep.
+
+            </p>
+
+            <button
+                class="btn"
+                onclick="showProducts()"
+            >
+
+                Start Shopping →
+
+            </button>
+
+        </section>
+
+
+        <div class="grid">
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Fast Delivery
+                </h3>
+
+                <p>
+                    Quick and reliable delivery.
+                </p>
+
+            </div>
+
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Secure Account
+                </h3>
+
+                <p>
+                    OTP verified authentication.
+                </p>
+
+            </div>
+
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Secure Payment
+                </h3>
+
+                <p>
+                    Razorpay powered payments.
+                </p>
+
+            </div>
+
+
+            <div class="card feature">
+
+                <div class="feature-icon">
+                    📦
+                </div>
+
+                <h3>
+                    Order Tracking
+                </h3>
+
+                <p>
+                    Track your order status.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
 }
 
-};
 
-const rzp=new Razorpay(options);
+/* =====================================================
+   REGISTER
+===================================================== */
 
-rzp.open();
+function showRegister() {
 
-}catch(err){
+    document.getElementById(
+        "app"
+    ).innerHTML = `
 
-loading(false);
+        <div class="form-container">
 
-document.getElementById("status").innerHTML="Error";
+            <h2>
+                Create Account
+            </h2>
 
-document.getElementById("status").className="badge error";
+            <p class="subtitle">
+                Register your Instant Delivery account.
+            </p>
 
-log(err);
+            <div id="registerMessage"></div>
 
-alert("Something went wrong.");
+            <form
+                onsubmit="register(event)"
+            >
+
+                <div class="row">
+
+                    <div class="form-group">
+
+                        <label>
+                            First Name
+                        </label>
+
+                        <input
+                            class="input"
+                            id="firstName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Last Name
+                        </label>
+
+                        <input
+                            class="input"
+                            id="lastName"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        class="input"
+                        id="registerEmail"
+                        type="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        class="input"
+                        id="registerPhone"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        class="input"
+                        id="registerPassword"
+                        type="password"
+                        minlength="8"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    style="width:100%"
+                >
+
+                    Register
+
+                </button>
+
+            </form>
+
+
+            <p
+                class="center"
+                style="margin-top:18px"
+            >
+
+                Already have an account?
+
+                <a
+                    href="#"
+                    onclick="
+                        showLogin();
+                        return false;
+                    "
+                >
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    `;
 
 }
+
+
+/* =====================================================
+   REGISTER API
+===================================================== */
+
+async function register(event) {
+
+    event.preventDefault();
+
+    const message =
+        document.getElementById(
+            "registerMessage"
+        );
+
+    try {
+
+        const response =
+            await api(
+
+                "/auth/register",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            first_name:
+                                document.getElementById(
+                                    "firstName"
+                                ).value,
+
+                            last_name:
+                                document.getElementById(
+                                    "lastName"
+                                ).value,
+
+                            email:
+                                document.getElementById(
+                                    "registerEmail"
+                                ).value,
+
+                            phone:
+                                document.getElementById(
+                                    "registerPhone"
+                                ).value,
+
+                            password:
+                                document.getElementById(
+                                    "registerPassword"
+                                ).value
+
+                        })
+
+                }
+
+            );
+
+        showVerifyOTP(
+            document.getElementById(
+                "registerEmail"
+            ).value
+        );
+
+    }
+
+    catch (error) {
+
+        message.innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   VERIFY OTP
+===================================================== */
+
+function showVerifyOTP(email) {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Verify Your Account
+            </h2>
+
+            <p class="subtitle">
+
+                Enter the OTP sent to
+
+                <b>
+                    ${email}
+                </b>
+
+            </p>
+
+
+            <div id="otpMessage"></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    OTP
+                </label>
+
+                <input
+                    class="input"
+                    id="otp"
+                    maxlength="6"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="
+                    verifyOTP('${email}')
+                "
+            >
+
+                Verify OTP
+
+            </button>
+
+
+            <button
+                class="btn btn-secondary"
+                style="
+                    width:100%;
+                    margin-top:10px;
+                "
+                onclick="
+                    resendOTP('${email}')
+                "
+            >
+
+                Resend OTP
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   VERIFY OTP API
+===================================================== */
+
+async function verifyOTP(email) {
+
+    const message =
+        document.getElementById(
+            "otpMessage"
+        );
+
+    try {
+
+        await api(
+
+            "/auth/verify-otp",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email,
+
+                        otp:
+                            document.getElementById(
+                                "otp"
+                            ).value
+
+                    })
+
+            }
+
+        );
+
+        message.innerHTML = `
+
+            <div class="alert alert-success">
+
+                Account created successfully.
+
+            </div>
+
+        `;
+
+        setTimeout(
+            showLogin,
+            1000
+        );
+
+    }
+
+    catch (error) {
+
+        message.innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RESEND OTP
+===================================================== */
+
+async function resendOTP(email) {
+
+    try {
+
+        await api(
+
+            "/auth/resend-otp",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email
+
+                    })
+
+            }
+
+        );
+
+        alert(
+            "OTP resent successfully."
+        );
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function showLogin() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Welcome Back
+            </h2>
+
+            <p class="subtitle">
+                Login to your account.
+            </p>
+
+            <div id="loginMessage"></div>
+
+
+            <form
+                onsubmit="login(event)"
+            >
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        class="input"
+                        id="loginEmail"
+                        type="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        class="input"
+                        id="loginPassword"
+                        type="password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    style="width:100%"
+                >
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <div
+                class="center"
+                style="margin-top:15px"
+            >
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showForgotPassword()"
+                >
+
+                    Forgot Password?
+
+                </button>
+
+            </div>
+
+
+            <p
+                class="center"
+                style="margin-top:18px"
+            >
+
+                Don't have an account?
+
+                <a
+                    href="#"
+                    onclick="
+                        showRegister();
+                        return false;
+                    "
+                >
+
+                    Register
+
+                </a>
+
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   LOGIN API
+===================================================== */
+
+async function login(event) {
+
+    event.preventDefault();
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    try {
+
+        const response =
+            await api(
+
+                "/auth/login",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            email:
+                                document.getElementById(
+                                    "loginEmail"
+                                ).value,
+
+                            password:
+                                document.getElementById(
+                                    "loginPassword"
+                                ).value
+
+                        })
+
+                }
+
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        setAuthentication(
+
+            data.accessToken,
+
+            data.user
+
+        );
+
+        showHome();
+
+    }
+
+    catch (error) {
+
+        message.innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+function showForgotPassword() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Forgot Password
+            </h2>
+
+            <p class="subtitle">
+                Enter your registered email.
+            </p>
+
+            <div id="forgotMessage"></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    class="input"
+                    id="forgotEmail"
+                    type="email"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="forgotPassword()"
+            >
+
+                Send OTP
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+async function forgotPassword() {
+
+    try {
+
+        const email =
+            document.getElementById(
+                "forgotEmail"
+            ).value;
+
+        await api(
+
+            "/auth/forgot-password",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email
+
+                    })
+
+            }
+
+        );
+
+        showResetPassword(email);
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "forgotMessage"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET PASSWORD
+===================================================== */
+
+function showResetPassword(email) {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="form-container">
+
+            <h2>
+                Reset Password
+            </h2>
+
+            <p class="subtitle">
+                Enter the OTP and your new password.
+            </p>
+
+            <div id="resetMessage"></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    class="input"
+                    id="resetEmail"
+                    value="${email}"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    OTP
+                </label>
+
+                <input
+                    class="input"
+                    id="resetOTP"
+                    maxlength="6"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    New Password
+                </label>
+
+                <input
+                    class="input"
+                    id="newPassword"
+                    type="password"
+                    minlength="8"
+                >
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="resetPassword()"
+            >
+
+                Reset Password
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+async function resetPassword() {
+
+    try {
+
+        await api(
+
+            "/auth/reset-password",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        email:
+                            document.getElementById(
+                                "resetEmail"
+                            ).value,
+
+                        otp:
+                            document.getElementById(
+                                "resetOTP"
+                            ).value,
+
+                        new_password:
+                            document.getElementById(
+                                "newPassword"
+                            ).value
+
+                    })
+
+            }
+
+        );
+
+        alert(
+            "Password reset successfully."
+        );
+
+        showLogin();
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "resetMessage"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout() {
+
+    try {
+
+        await api(
+
+            "/auth/logout",
+
+            {
+
+                method: "POST"
+
+            }
+
+        );
+
+    }
+
+    catch {}
+
+    setAuthentication(
+        null,
+        null
+    );
+
+    showHome();
+
+}
+
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+async function showProducts() {
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2 style="margin-bottom:18px">
+            Products
+        </h2>
+
+
+        <div class="search-box">
+
+            <input
+                class="input"
+                id="searchProduct"
+                placeholder="Search products..."
+            >
+
+            <button
+                class="btn"
+                onclick="searchProducts()"
+            >
+
+                Search
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="products"
+            class="products"
+        >
+
+            Loading products...
+
+        </div>
+
+    `;
+
+    await loadProducts();
+
+}
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+async function loadProducts(query = "") {
+
+    try {
+
+        let endpoint = "/prod";
+
+        if (query && query.trim()) {
+
+            endpoint =
+                "/prod/search?q=" +
+                encodeURIComponent(
+                    query.trim()
+                );
+
+        }
+
+        const response =
+            await api(endpoint);
+
+        console.log(
+            "Products API Response:",
+            response
+        );
+
+        const data =
+            response.data ??
+            response;
+
+        let list = [];
+
+        if (Array.isArray(data)) {
+
+            list = data;
+
+        }
+
+        else if (Array.isArray(data.products)) {
+
+            list = data.products;
+
+        }
+
+        else if (Array.isArray(data.rows)) {
+
+            list = data.rows;
+
+        }
+
+        else if (Array.isArray(data.data)) {
+
+            list = data.data;
+
+        }
+
+        renderProducts(list);
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Product loading error:",
+            error
+        );
+
+        document.getElementById(
+            "products"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SEARCH PRODUCTS
+===================================================== */
+
+function searchProducts() {
+
+    const query =
+        document.getElementById(
+            "searchProduct"
+        ).value;
+
+    loadProducts(
+        query
+    );
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(
+    products
+) {
+
+    const container =
+        document.getElementById(
+            "products"
+        );
+
+    if (!products.length) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                No products found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        products.map(
+
+            product => `
+
+                <div class="product">
+
+                    <div class="product-image">
+
+                        🛒
+
+                    </div>
+
+                    <div class="product-body">
+
+                        <h3>
+
+                            ${
+                                product.name ||
+                                product.product_name ||
+                                "Product"
+                            }
+
+                        </h3>
+
+                        <p
+                            style="
+                                color:#64748b;
+                                font-size:13px;
+                            "
+                        >
+
+                            ${
+                                product.brand_name ||
+                                "Instant Delivery"
+                            }
+
+                        </p>
+
+
+                        <button
+                            class="btn"
+                            style="
+                                width:100%;
+                                margin-top:12px;
+                            "
+                            onclick="
+                                showVariants(
+                                    ${product.id}
+                                )
+                            "
+                        >
+
+                            View Variants
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =====================================================
+   VARIANTS
+===================================================== */
+
+async function showVariants(
+    productId
+) {
+
+    openModal(
+        "<h2>Loading variants...</h2>"
+    );
+
+    try {
+
+        const response =
+            await api(
+
+                `/prod/${productId}/var`
+
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const variants =
+            Array.isArray(data)
+                ? data
+                : data.variants ||
+                  data.rows ||
+                  [];
+
+        let html = `
+
+            <h2>
+                Select Variant
+            </h2>
+
+        `;
+
+        variants.forEach(
+
+            variant => {
+
+                const price =
+                    variant.final_price ??
+                    variant.selling_price ??
+                    0;
+
+                const stock =
+                    Number(
+                        variant.stock_quantity ||
+                        0
+                    );
+
+                html += `
+
+                    <div
+                        class="card"
+                        style="
+                            margin-top:12px;
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                            gap:15px;
+                        "
+                    >
+
+                        <div>
+
+                            <b>
+
+                                ${
+                                    variant.variant_name ||
+                                    variant.name ||
+                                    "Variant"
+                                }
+
+                            </b>
+
+                            <p
+                                style="
+                                    color:#64748b;
+                                    font-size:13px;
+                                "
+                            >
+
+                                SKU:
+                                ${
+                                    variant.sku ||
+                                    "-"
+                                }
+
+                            </p>
+
+                            <div class="price">
+
+                                ₹${Number(price).toFixed(2)}
+
+                            </div>
+
+                            <span
+                                class="
+                                    badge
+                                    ${
+                                        stock > 0
+                                            ? "badge-success"
+                                            : "badge-danger"
+                                    }
+                                "
+                            >
+
+                                ${
+                                    stock > 0
+                                        ? stock +
+                                          " available"
+                                        : "Out of stock"
+                                }
+
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="btn"
+                            ${
+                                stock <= 0
+                                    ? "disabled"
+                                    : ""
+                            }
+                            onclick="
+                                addToCart(
+                                    ${variant.id}
+                                )
+                            "
+                        >
+
+                            Add
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+        document.getElementById(
+            "modalContent"
+        ).innerHTML =
+            html;
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "modalContent"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+
+async function addToCart(
+    variantId
+) {
+
+    if (!accessToken) {
+
+        closeModal();
+
+        showLogin();
+
+        return;
+
+    }
+
+
+    try {
+
+        await api(
+
+            "/cart",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        variant_id:
+                            Number(
+                                variantId
+                            ),
+
+                        quantity: 1
+
+                    })
+
+            }
+
+        );
+
+
+        closeModal();
+
+
+        await updateCartCount();
+
+
+        alert(
+            "Product added to cart."
+        );
+
+
+        /*
+            Optional:
+            automatically open the cart
+            after adding an item.
+        */
+
+        showCart();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Add to cart error:",
+            error
+        );
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+async function showCart() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2>
+            My Cart
+        </h2>
+
+        <div
+            id="cart"
+            style="margin-top:20px"
+        >
+            Loading...
+        </div>
+
+    `;
+
+    await loadCart();
+
+}
+
+
+async function loadCart() {
+
+    const cartContainer =
+        document.getElementById("cart");
+
+    try {
+
+        if (!accessToken) {
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        const response =
+            await api(
+                "/cart"
+            );
+
+
+        console.log(
+            "CART API RESPONSE:",
+            response
+        );
+
+
+        /*
+            Expected backend response:
+
+            {
+                success: true,
+                message: "Cart fetched successfully.",
+                data: {
+                    cart: [...]
+                }
+            }
+        */
+
+
+        const cartItems =
+            response?.data?.cart || [];
+
+
+        console.log(
+            "CART ITEMS:",
+            cartItems
+        );
+
+
+        renderCart(
+            cartItems
+        );
+
+
+        /*
+            Also update cart count
+        */
+
+        updateCartCount(
+            cartItems
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Cart loading error:",
+            error
+        );
+
+
+        if (cartContainer) {
+
+            cartContainer.innerHTML = `
+
+                <div class="card center">
+
+                    <h3>
+                        Unable to load cart
+                    </h3>
+
+                    <p
+                        style="
+                            margin-top:8px;
+                            color:#dc2626;
+                        "
+                    >
+                        ${error.message}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+}
+/* =====================================================
+   RENDER CART
+===================================================== */
+
+function renderCart(cartResponse) {
+
+    console.log(
+        "Rendering cart response:",
+        cartResponse
+    );
+
+    let items = [];
+
+    /*
+        Backend response:
+
+        {
+            success: true,
+            message: "Cart fetched successfully.",
+            data: {
+                cart: [...]
+            }
+        }
+    */
+
+    if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.cart)
+    ) {
+
+        items = cartResponse.data.cart;
+
+    }
+
+    /*
+        Direct array fallback
+    */
+
+    else if (
+        Array.isArray(cartResponse)
+    ) {
+
+        items = cartResponse;
+
+    }
+
+    /*
+        Other possible response structures
+    */
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.cart)
+    ) {
+
+        items = cartResponse.cart;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.items)
+    ) {
+
+        items = cartResponse.data.items;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.items)
+    ) {
+
+        items = cartResponse.items;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.cart_items)
+    ) {
+
+        items = cartResponse.data.cart_items;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.cart_items)
+    ) {
+
+        items = cartResponse.cart_items;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.cartItems)
+    ) {
+
+        items = cartResponse.data.cartItems;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.cartItems)
+    ) {
+
+        items = cartResponse.cartItems;
+
+    }
+
+    else if (
+        cartResponse &&
+        cartResponse.data &&
+        Array.isArray(cartResponse.data.rows)
+    ) {
+
+        items = cartResponse.data.rows;
+
+    }
+
+    else if (
+        cartResponse &&
+        Array.isArray(cartResponse.rows)
+    ) {
+
+        items = cartResponse.rows;
+
+    }
+
+
+    console.log(
+        "Extracted cart items:",
+        items
+    );
+
+
+    /*
+        EMPTY CART
+    */
+
+    if (!items.length) {
+
+        document.getElementById(
+            "cart"
+        ).innerHTML = `
+
+            <div class="card center">
+
+                <h3>
+                    Your cart is empty 🛒
+                </h3>
+
+                <p
+                    style="
+                        margin-top:8px;
+                        color:#64748b;
+                    "
+                >
+                    Add products to your cart
+                    to see them here.
+                </p>
+
+                <button
+                    class="btn"
+                    style="
+                        margin-top:15px;
+                    "
+                    onclick="showProducts()"
+                >
+                    Shop Now
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+        CALCULATE TOTAL
+    */
+
+    let total = 0;
+
+
+    /*
+        CART HTML
+    */
+
+    let html = `
+
+        <div class="card">
+
+            <h3
+                style="
+                    margin-bottom:15px;
+                "
+            >
+
+                ${items.length}
+                ${items.length === 1
+                    ? "Item"
+                    : "Items"}
+
+            </h3>
+
+    `;
+
+
+    /*
+        RENDER EACH CART ITEM
+    */
+
+    items.forEach(
+        item => {
+
+            const itemId =
+                item.item_id ??
+                item.id;
+
+
+            const variantId =
+                item.variant_id;
+
+
+            const quantity =
+                Number(
+                    item.quantity || 1
+                );
+
+
+            const unitPrice =
+                Number(
+                    item.final_price ??
+                    item.selling_price ??
+                    item.price ??
+                    0
+                );
+
+
+            const itemTotal =
+                Number(
+                    item.total_price ??
+                    (
+                        unitPrice *
+                        quantity
+                    )
+                );
+
+
+            total += itemTotal;
+
+
+            const productName =
+                item.product_name ??
+                item.name ??
+                "Product";
+
+
+            const variantName =
+                item.variant_name ??
+                "";
+
+
+            const sku =
+                item.sku ??
+                "";
+
+
+            html += `
+
+                <div
+                    class="cart-item"
+                >
+
+                    <!-- PRODUCT INFORMATION -->
+
+                    <div>
+
+                        <h3>
+                            ${productName}
+                        </h3>
+
+
+                        ${
+                            variantName
+                                ? `
+                                    <p
+                                        style="
+                                            color:#64748b;
+                                            margin-top:5px;
+                                        "
+                                    >
+                                        ${variantName}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+
+                        ${
+                            sku
+                                ? `
+                                    <p
+                                        style="
+                                            color:#94a3b8;
+                                            font-size:12px;
+                                            margin-top:4px;
+                                        "
+                                    >
+                                        SKU:
+                                        ${sku}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+
+                        <p
+                            style="
+                                margin-top:8px;
+                                font-weight:600;
+                            "
+                        >
+                            ₹${unitPrice.toFixed(2)}
+                            / item
+                        </p>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <div
+                        class="quantity"
+                    >
+
+                        <button
+                            onclick="
+                                updateCartItem(
+                                    ${itemId},
+                                    ${quantity - 1}
+                                )
+                            "
+                        >
+                            −
+                        </button>
+
+
+                        <b>
+                            ${quantity}
+                        </b>
+
+
+                        <button
+                            onclick="
+                                updateCartItem(
+                                    ${itemId},
+                                    ${quantity + 1}
+                                )
+                            "
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <!-- PRICE -->
+
+                    <div
+                        style="
+                            text-align:right;
+                        "
+                    >
+
+                        <strong>
+                            ₹${itemTotal.toFixed(2)}
+                        </strong>
+
+
+                        <br>
+
+
+                        <button
+                            class="
+                                btn
+                                btn-danger
+                            "
+                            style="
+                                margin-top:8px;
+                                padding:7px 10px;
+                            "
+                            onclick="
+                                removeCartItem(
+                                    ${itemId}
+                                )
+                            "
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    /*
+        CART SUMMARY
+    */
+
+    html += `
+
+            <div class="total">
+
+                <strong>
+                    Cart Total
+                </strong>
+
+                <strong
+                    style="
+                        font-size:20px;
+                    "
+                >
+                    ₹${total.toFixed(2)}
+                </strong>
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="
+                    width:100%;
+                    margin-top:15px;
+                "
+                onclick="checkout()"
+            >
+                Proceed to Checkout
+            </button>
+
+
+        </div>
+
+    `;
+
+
+    /*
+        DISPLAY CART
+    */
+
+    const cartElement =
+        document.getElementById("cart");
+
+
+    if (!cartElement) {
+
+        console.error(
+            'Element with id="cart" was not found.'
+        );
+
+        return;
+
+    }
+
+
+    cartElement.innerHTML =
+        html;
+
+}
+
+/* =====================================================
+   UPDATE CART
+===================================================== */
+
+async function updateCartItem(
+    itemId,
+    quantity
+) {
+
+    if (quantity < 1) {
+
+        removeCartItem(
+            itemId
+        );
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            `/cart/${itemId}`,
+
+            {
+
+                method: "PATCH",
+
+                body:
+                    JSON.stringify({
+
+                        quantity
+
+                    })
+
+            }
+
+        );
+
+        showCart();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   REMOVE CART ITEM
+===================================================== */
+
+async function removeCartItem(
+    itemId
+) {
+
+    try {
+
+        await api(
+
+            `/cart/${itemId}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+        showCart();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE CART COUNT
+===================================================== */
+
+async function updateCartCount(
+    cart = null
+) {
+
+    if (!accessToken) {
+
+        document.getElementById(
+            "cartCount"
+        ).textContent = "";
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+            If cart was not supplied,
+            fetch it from backend.
+        */
+
+        if (!cart) {
+
+            const response =
+                await api(
+                    "/cart"
+                );
+
+            cart =
+                response?.data?.cart || [];
+
+        }
+
+
+        /*
+            Normalize cart into an array.
+        */
+
+        let items = [];
+
+
+        if (Array.isArray(cart)) {
+
+            items = cart;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.cart)
+        ) {
+
+            items = cart.cart;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.items)
+        ) {
+
+            items = cart.items;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.cart_items)
+        ) {
+
+            items = cart.cart_items;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.cartItems)
+        ) {
+
+            items = cart.cartItems;
+
+        }
+
+        else if (
+            cart &&
+            Array.isArray(cart.rows)
+        ) {
+
+            items = cart.rows;
+
+        }
+
+
+        /*
+            Calculate total quantity.
+        */
+
+        const count =
+            items.reduce(
+
+                (
+                    total,
+                    item
+                ) => {
+
+                    return (
+                        total +
+                        Number(
+                            item.quantity || 0
+                        )
+                    );
+
+                },
+
+                0
+
+            );
+
+
+        document.getElementById(
+            "cartCount"
+        ).textContent =
+            count > 0
+                ? `(${count})`
+                : "";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Cart count error:",
+            error
+        );
+
+    }
+
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+async function showProfile() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2>
+            My Profile
+        </h2>
+
+        <div
+            id="profile"
+            style="
+                margin-top:20px;
+            "
+        >
+
+            Loading...
+
+        </div>
+
+    `;
+
+    try {
+
+        const response =
+            await api(
+                "/users/profile"
+            );
+
+        const user =
+            response.data ||
+            response;
+
+        currentUser =
+            user;
+
+        document.getElementById(
+            "profile"
+        ).innerHTML = `
+
+            <div class="card">
+
+                <form
+                    onsubmit="
+                        updateProfile(event)
+                    "
+                >
+
+                    <div class="row">
+
+                        <div class="form-group">
+
+                            <label>
+                                First Name
+                            </label>
+
+                            <input
+                                class="input"
+                                id="profileFirstName"
+                                value="${
+                                    user.first_name ||
+                                    ""
+                                }"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Last Name
+                            </label>
+
+                            <input
+                                class="input"
+                                id="profileLastName"
+                                value="${
+                                    user.last_name ||
+                                    ""
+                                }"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            class="input"
+                            value="${
+                                user.email ||
+                                ""
+                            }"
+                            disabled
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone
+                        </label>
+
+                        <input
+                            class="input"
+                            id="profilePhone"
+                            value="${
+                                user.phone ||
+                                ""
+                            }"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="btn"
+                    >
+
+                        Update Profile
+
+                    </button>
+
+                </form>
+
+
+                <hr
+                    style="
+                        border:0;
+                        border-top:
+                            1px solid #e2e8f0;
+                        margin:25px 0;
+                    "
+                >
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="showAddresses()"
+                >
+
+                    Manage Addresses
+
+                </button>
+
+
+                <button
+                    class="btn btn-danger"
+                    style="margin-left:10px"
+                    onclick="deleteAccount()"
+                >
+
+                    Delete Account
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "profile"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE PROFILE
+===================================================== */
+
+async function updateProfile(
+    event
+) {
+
+    event.preventDefault();
+
+    try {
+
+        await api(
+
+            "/users/profile",
+
+            {
+
+                method: "PATCH",
+
+                body:
+                    JSON.stringify({
+
+                        first_name:
+                            document.getElementById(
+                                "profileFirstName"
+                            ).value,
+
+                        last_name:
+                            document.getElementById(
+                                "profileLastName"
+                            ).value,
+
+                        phone:
+                            document.getElementById(
+                                "profilePhone"
+                            ).value
+
+                    })
+
+            }
+
+        );
+
+        alert(
+            "Profile updated successfully."
+        );
+
+        showProfile();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADDRESS
+===================================================== */
+
+async function showAddresses() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div
+            style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin-bottom:20px;
+            "
+        >
+
+            <h2>
+                My Addresses
+            </h2>
+
+            <button
+                class="btn"
+                onclick="showAddAddress()"
+            >
+
+                + Add Address
+
+            </button>
+
+        </div>
+
+
+        <div id="addresses">
+
+            Loading...
+
+        </div>
+
+    `;
+
+    try {
+
+        const response =
+            await api(
+                "/add"
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const addresses =
+            Array.isArray(data)
+                ? data
+                : data.addresses ||
+                  data.rows ||
+                  [];
+
+        renderAddresses(
+            addresses
+        );
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "addresses"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function renderAddresses(
+    addresses
+) {
+
+    if (!addresses.length) {
+
+        document.getElementById(
+            "addresses"
+        ).innerHTML = `
+
+            <div class="card">
+
+                No addresses found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    document.getElementById(
+        "addresses"
+    ).innerHTML =
+        addresses.map(
+
+            address => `
+
+                <div
+                    class="address"
+                >
+
+                    <span class="badge">
+
+                        ${
+                            address.label ||
+                            "Address"
+                        }
+
+                    </span>
+
+
+                    <h3
+                        style="margin-top:10px"
+                    >
+
+                        ${
+                            address.receiver_name ||
+                            ""
+                        }
+
+                    </h3>
+
+
+                    <p
+                        style="
+                            color:#64748b;
+                            margin-top:8px;
+                            line-height:1.6;
+                        "
+                    >
+
+                        ${
+                            address.address_line1 ||
+                            ""
+                        }
+
+                        <br>
+
+                        ${
+                            address.address_line2 ||
+                            ""
+                        }
+
+                        <br>
+
+                        ${
+                            address.city ||
+                            ""
+                        },
+
+                        ${
+                            address.state ||
+                            ""
+                        }
+
+                        -
+
+                        ${
+                            address.pincode ||
+                            ""
+                        }
+
+                    </p>
+
+
+                    <div
+                        style="
+                            margin-top:12px;
+                        "
+                    >
+
+                        ${
+                            address.is_default
+                                ? `
+                                    <span
+                                        class="
+                                            badge
+                                            badge-success
+                                        "
+                                    >
+                                        Default
+                                    </span>
+                                `
+                                : `
+                                    <button
+                                        class="
+                                            btn
+                                            btn-secondary
+                                        "
+                                        onclick="
+                                            setDefaultAddress(
+                                                ${address.id}
+                                            )
+                                        "
+                                    >
+                                        Set Default
+                                    </button>
+                                `
+                        }
+
+
+                        <button
+                            class="
+                                btn
+                                btn-danger
+                            "
+                            style="
+                                margin-left:8px;
+                            "
+                            onclick="
+                                deleteAddress(
+                                    ${address.id}
+                                )
+                            "
+                        >
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =====================================================
+   ADD ADDRESS
+===================================================== */
+
+function showAddAddress() {
+
+    openModal(`
+
+        <h2>
+            Add Address
+        </h2>
+
+        <form
+            onsubmit="
+                addAddress(event)
+            "
+        >
+
+            <div class="form-group">
+
+                <label>
+                    Label
+                </label>
+
+                <input
+                    class="input"
+                    id="addressLabel"
+                    placeholder="Home"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Receiver Name
+                </label>
+
+                <input
+                    class="input"
+                    id="receiverName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone
+                </label>
+
+                <input
+                    class="input"
+                    id="addressPhone"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address Line 1
+                </label>
+
+                <input
+                    class="input"
+                    id="addressLine1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address Line 2
+                </label>
+
+                <input
+                    class="input"
+                    id="addressLine2"
+                >
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        class="input"
+                        id="addressCity"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        class="input"
+                        id="addressState"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Pincode
+                </label>
+
+                <input
+                    class="input"
+                    id="addressPincode"
+                    required
+                >
+
+            </div>
+
+<div class="row">
+
+    <div class="form-group">
+
+        <label>
+            Latitude
+        </label>
+
+        <input
+            class="input"
+            id="addressLatitude"
+            type="number"
+            step="any"
+            placeholder="e.g. 21.1938"
+            required
+        >
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Longitude
+        </label>
+
+        <input
+            class="input"
+            id="addressLongitude"
+            type="number"
+            step="any"
+            placeholder="e.g. 81.3509"
+            required
+        >
+
+    </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>
+            Set as Default Address
+        </label>
+
+        <select
+            class="input"
+            id="addressIsDefault"
+        >
+
+            <option value="false">
+                No
+            </option>
+
+            <option value="true">
+                Yes
+            </option>
+
+        </select>
+
+    </div>
+            <button
+                class="btn"
+                style="width:100%"
+            >
+
+                Save Address
+
+            </button>
+
+        </form>
+
+    `);
+
+}
+
+
+async function addAddress(
+    event
+) {
+
+    event.preventDefault();
+
+    try {
+
+        await api(
+
+            "/add",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        title:
+                            document.getElementById(
+                                "addressLabel"
+                            ).value,
+
+                        receiver_name:
+                            document.getElementById(
+                                "receiverName"
+                            ).value,
+
+                        receiver_phone:
+                            document.getElementById(
+                                "addressPhone"
+                            ).value,
+
+                        address_line1:
+                            document.getElementById(
+                                "addressLine1"
+                            ).value,
+
+                        address_line2:
+                            document.getElementById(
+                                "addressLine2"
+                            ).value,
+
+                        city:
+                            document.getElementById(
+                                "addressCity"
+                            ).value,
+
+                        state:
+                            document.getElementById(
+                                "addressState"
+                            ).value,
+
+                        pincode:
+                            document.getElementById(
+                                "addressPincode"
+                            ).value,
+
+                        latitude:
+                            Number(
+                                document.getElementById(
+                                    "addressLatitude"
+                                ).value
+                            ),
+
+                        longitude:
+                            Number(
+                                document.getElementById(
+                                    "addressLongitude"
+                                ).value
+                            ),
+
+                        is_default:
+                            document.getElementById(
+                                "addressIsDefault"
+                            ).value === "true"
+
+                    })
+
+            }
+
+        );
+
+        closeModal();
+
+        showAddresses();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DEFAULT ADDRESS
+===================================================== */
+
+async function setDefaultAddress(
+    id
+) {
+
+    try {
+
+        await api(
+
+            `/add/${id}/default`,
+
+            {
+
+                method: "PATCH"
+
+            }
+
+        );
+
+        showAddresses();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE ADDRESS
+===================================================== */
+
+async function deleteAddress(
+    id
+) {
+
+    if (
+        !confirm(
+            "Delete this address?"
+        )
+    ) {
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            `/add/${id}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+        showAddresses();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE ACCOUNT
+===================================================== */
+
+async function deleteAccount() {
+
+    const password =
+        prompt(
+            "Enter your password:"
+        );
+
+    if (!password) {
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            "/users/delete-account",
+
+            {
+
+                method: "DELETE",
+
+                body:
+                    JSON.stringify({
+
+                        password
+
+                    })
+
+            }
+
+        );
+
+        const otp =
+            prompt(
+                "Enter the OTP sent to your email:"
+            );
+
+        if (!otp) {
+
+            return;
+
+        }
+
+        await api(
+
+            "/users/delete-account/verify-otp",
+
+            {
+
+                method: "POST",
+
+                body:
+                    JSON.stringify({
+
+                        otp
+
+                    })
+
+            }
+
+        );
+
+        setAuthentication(
+            null,
+            null
+        );
+
+        alert(
+            "Account deleted."
+        );
+
+        showHome();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+async function checkout() {
+
+    try {
+
+        const response =
+            await api(
+                "/add"
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const addresses =
+            Array.isArray(data)
+                ? data
+                : data.addresses ||
+                  data.rows ||
+                  [];
+
+        if (!addresses.length) {
+
+            alert(
+                "Please add a delivery address first."
+            );
+
+            showAddresses();
+
+            return;
+
+        }
+
+        openModal(`
+
+            <h2>
+                Checkout
+            </h2>
+
+            <div class="form-group">
+
+                <label>
+                    Delivery Address
+                </label>
+
+                <select
+                    class="input"
+                    id="checkoutAddress"
+                >
+
+                    ${
+                        addresses.map(
+
+                            address => `
+
+                                <option
+                                    value="${address.id}"
+                                >
+
+                                    ${
+                                        address.label ||
+                                        "Address"
+                                    }
+
+                                    -
+
+                                    ${
+                                        address.city ||
+                                        ""
+                                    }
+
+                                </option>
+
+                            `
+
+                        ).join("")
+                    }
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Payment Method
+                </label>
+
+                <select
+                    class="input"
+                    id="paymentMethod"
+                >
+
+                    <option value="COD">
+                        Cash on Delivery
+                    </option>
+
+                    <option value="ONLINE">
+                        Online Payment
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="btn"
+                style="width:100%"
+                onclick="placeOrder()"
+            >
+
+                Place Order
+
+            </button>
+
+        `);
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
+===================================================== */
+
+async function placeOrder() {
+
+    try {
+
+        if (!accessToken) {
+
+            closeModal();
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        const addressElement =
+            document.getElementById(
+                "checkoutAddress"
+            );
+
+        const paymentElement =
+            document.getElementById(
+                "paymentMethod"
+            );
+
+
+        if (!addressElement) {
+
+            alert(
+                "Please select a delivery address."
+            );
+
+            return;
+
+        }
+
+
+        if (!paymentElement) {
+
+            alert(
+                "Please select a payment method."
+            );
+
+            return;
+
+        }
+
+
+        const addressId =
+            Number(
+                addressElement.value
+            );
+
+
+        const paymentMethod =
+            paymentElement.value;
+
+
+        /*
+            Create the order first.
+        */
+
+        const response =
+            await api(
+
+                "/order",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            address_id:
+                                addressId,
+
+                            payment_method:
+                                paymentMethod,
+
+                            notes: ""
+
+                        })
+
+                }
+
+            );
+
+
+        console.log(
+            "PLACE ORDER RESPONSE:",
+            response
+        );
+
+
+        const order =
+            response?.data?.order ||
+            response?.data ||
+            response;
+
+
+        /*
+            Close checkout modal.
+        */
+
+        closeModal();
+
+
+        /*
+            ONLINE PAYMENT
+        */
+
+        if (
+            paymentMethod ===
+            "ONLINE"
+        ) {
+
+            await createPayment(
+                order
+            );
+
+            return;
+
+        }
+
+
+        /*
+            COD
+        */
+
+        alert(
+            "Order placed successfully."
+        );
+
+        showOrders();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Place order error:",
+            error
+        );
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+/* =====================================================
+   RAZORPAY ONLINE PAYMENT
+===================================================== */
+
+async function createPayment(
+    order
+) {
+
+    try {
+
+        if (!accessToken) {
+
+            showLogin();
+
+            return;
+
+        }
+
+
+        /*
+            Get order ID from different
+            possible backend response structures.
+        */
+
+        const orderId =
+            Number(
+                order?.order_id ??
+                order?.orderId ??
+                order?.id
+            );
+
+
+        if (!orderId) {
+
+            console.error(
+                "Invalid order response:",
+                order
+            );
+
+            throw new Error(
+                "Order ID was not returned by the server."
+            );
+
+        }
+
+
+        console.log(
+            "Creating Razorpay payment for order:",
+            orderId
+        );
+
+
+        /*
+            Create Razorpay payment order
+        */
+
+        const paymentResponse =
+            await api(
+
+                "/pay/create",
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            orderId:
+                                orderId,
+
+                            paymentMethod:
+                                "UPI",
+
+                            paymentGateway:
+                                "RAZORPAY"
+
+                        })
+
+                }
+
+            );
+
+
+        console.log(
+            "PAYMENT CREATE RESPONSE:",
+            paymentResponse
+        );
+
+
+        const payment =
+            paymentResponse?.data ||
+            paymentResponse;
+
+
+        /*
+            Validate Razorpay data
+        */
+
+        const razorpayKey =
+            payment.key ||
+            payment.razorpayKey;
+
+
+        const razorpayOrderId =
+            payment.razorpayOrderId ||
+            payment.gatewayOrderId;
+
+
+        const amount =
+            payment.amount;
+
+
+        const currency =
+            payment.currency ||
+            "INR";
+
+
+        const paymentId =
+            payment.paymentId;
+
+
+        if (
+            !razorpayKey ||
+            !razorpayOrderId ||
+            !amount ||
+            !paymentId
+        ) {
+
+            console.error(
+                "Invalid payment response:",
+                payment
+            );
+
+            throw new Error(
+                "Invalid Razorpay payment details received from server."
+            );
+
+        }
+
+
+        /*
+            Razorpay Checkout configuration
+        */
+
+        const options = {
+
+            key:
+                razorpayKey,
+
+            amount:
+                amount,
+
+            currency:
+                currency,
+
+            order_id:
+                razorpayOrderId,
+
+            name:
+                "Instant Delivery",
+
+            description:
+                `Online Payment - Order #${orderId}`,
+
+            theme: {
+
+                color:
+                    "#2563eb"
+
+            },
+
+
+            /*
+                Payment successful
+            */
+
+            handler:
+                async function (
+                    razorpayResponse
+                ) {
+
+                    try {
+
+                        console.log(
+                            "RAZORPAY RESPONSE:",
+                            razorpayResponse
+                        );
+
+
+                        /*
+                            Verify payment with backend
+                        */
+
+                        const verifyResponse =
+                            await api(
+
+                                "/pay/verify",
+
+                                {
+
+                                    method: "POST",
+
+                                    body:
+                                        JSON.stringify({
+
+                                            paymentId:
+                                                paymentId,
+
+                                            gatewayPaymentId:
+                                                razorpayResponse
+                                                    .razorpay_payment_id,
+
+                                            gatewayOrderId:
+                                                razorpayResponse
+                                                    .razorpay_order_id,
+
+                                            gatewaySignature:
+                                                razorpayResponse
+                                                    .razorpay_signature,
+
+                                            gatewayResponse:
+                                                razorpayResponse
+
+                                        })
+
+                                }
+
+                            );
+
+
+                        console.log(
+                            "PAYMENT VERIFY RESPONSE:",
+                            verifyResponse
+                        );
+
+
+                        if (
+                            verifyResponse.success
+                        ) {
+
+                            alert(
+                                "✅ Payment successful! Order placed."
+                            );
+
+
+                            /*
+                                Refresh cart count.
+                            */
+
+                            await updateCartCount();
+
+
+                            /*
+                                Show orders.
+                            */
+
+                            showOrders();
+
+                        }
+
+                        else {
+
+                            alert(
+                                "Payment verification failed."
+                            );
+
+                        }
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Payment verification error:",
+                            error
+                        );
+
+                        alert(
+                            "Payment was completed, but verification failed. Please check your order status."
+                        );
+
+                    }
+
+                },
+
+
+            /*
+                Razorpay closes
+            */
+
+            modal: {
+
+                ondismiss:
+                    function () {
+
+                        console.log(
+                            "Razorpay checkout closed."
+                        );
+
+                    }
+
+            }
+
+        };
+
+
+        /*
+            Open Razorpay
+        */
+
+        const razorpay =
+            new Razorpay(
+                options
+            );
+
+
+        razorpay.on(
+            "payment.failed",
+            function (
+                response
+            ) {
+
+                console.error(
+                    "Razorpay payment failed:",
+                    response
+                );
+
+                alert(
+                    "❌ Payment failed. Please try again."
+                );
+
+            }
+        );
+
+
+        razorpay.open();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Payment creation error:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Unable to start online payment."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   INTEGRATED PAYMENT GATEWAY
+===================================================== */
+
+function showPaymentGateway(orderId = "") {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <div class="payment-page">
+
+            <div class="payment-container">
+
+                <div class="payment-left">
+
+                    <div class="payment-logo">
+                        🛒
+                    </div>
+
+                    <div class="payment-title">
+                        Instant Delivery
+                    </div>
+
+                    <div class="payment-subtitle">
+
+                        Fast, Secure and Reliable payment
+                        processing powered by Razorpay.
+
+                        Use your current authenticated account
+                        to create, retry and verify payments.
+
+                    </div>
+
+                    <div class="payment-feature">
+
+                        <div class="payment-circle">✓</div>
+
+                        <div>
+                            Current Customer Authentication
+                        </div>
+
+                    </div>
+
+                    <div class="payment-feature">
+
+                        <div class="payment-circle">✓</div>
+
+                        <div>
+                            Create Razorpay Order
+                        </div>
+
+                    </div>
+
+                    <div class="payment-feature">
+
+                        <div class="payment-circle">✓</div>
+
+                        <div>
+                            Secure Signature Verification
+                        </div>
+
+                    </div>
+
+                    <div class="payment-feature">
+
+                        <div class="payment-circle">✓</div>
+
+                        <div>
+                            Payment Status Tracking
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="payment-right">
+
+                    <h2 style="margin-bottom:25px">
+                        Payment Checkout
+                    </h2>
+
+                    <div class="payment-status">
+
+                        <div>
+                            API Status
+                        </div>
+
+                        <div
+                            class="payment-badge"
+                            id="paymentStatus"
+                        >
+                            Connected
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Payment Type
+                        </label>
+
+                        <select
+                            class="input"
+                            id="paymentType"
+                        >
+
+                            <option value="create">
+                                Fresh Payment
+                            </option>
+
+                            <option value="retry">
+                                Retry Payment
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Order ID
+                        </label>
+
+                        <input
+                            class="input"
+                            type="number"
+                            id="paymentOrderId"
+                            value="${orderId || ""}"
+                            placeholder="Enter Order ID"
+                            min="1"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="btn"
+                        id="paymentPayBtn"
+                        onclick="processIntegratedPayment()"
+                    >
+
+                        Proceed To Pay
+
+                    </button>
+
+
+                    <div
+                        class="payment-loader"
+                        id="paymentLoader"
+                    >
+
+                        <div class="payment-spinner"></div>
+
+                        <p style="margin-top:15px">
+                            Processing...
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="payment-response"
+                        id="paymentResponse"
+                    >
+
+                        Ready for payment...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="payment-footer">
+
+                <div class="payment-footer-content">
+
+                    <div class="payment-footer-left">
+
+                        <div>
+                            © 2026
+                            <strong>
+                                Digesh Kumar Tandan
+                            </strong>.
+                            All Rights Reserved.
+                        </div>
+
+                        <small>
+                            Backend Developer • Node.js • MySQL • Express.js • RESTful APIs
+                        </small>
+
+                    </div>
+
+                    <div class="payment-footer-right">
+
+                        <a
+                            href="https://github.com/digesh-tandan/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-brands fa-github"></i>
+                            GitHub
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/digesh-kumar-tandan/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-brands fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+
+                        <a
+                            href="https://drive.google.com/file/d/1ELckR1jLYnSlzMvSXTJhESnhq7mo3CSk/view?usp=drivesdk"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-solid fa-file-lines"></i>
+                            Resume
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function setPaymentLoading(
+    loading
+) {
+
+    const loader =
+        document.getElementById(
+            "paymentLoader"
+        );
+
+    const button =
+        document.getElementById(
+            "paymentPayBtn"
+        );
+
+    if (loader) {
+
+        loader.style.display =
+            loading
+                ? "block"
+                : "none";
+
+    }
+
+    if (button) {
+
+        button.disabled =
+            loading;
+
+    }
+
+}
+
+
+function logPaymentResponse(
+    data
+) {
+
+    const response =
+        document.getElementById(
+            "paymentResponse"
+        );
+
+    if (!response) {
+
+        return;
+
+    }
+
+    if (
+        typeof data === "string"
+    ) {
+
+        response.textContent =
+            data;
+
+        return;
+
+    }
+
+    try {
+
+        response.textContent =
+            JSON.stringify(
+                data,
+                null,
+                4
+            );
+
+    }
+
+    catch {
+
+        response.textContent =
+            String(data);
+
+    }
+
+}
+
+
+function setPaymentStatus(
+    status,
+    type = "success"
+) {
+
+    const element =
+        document.getElementById(
+            "paymentStatus"
+        );
+
+    if (!element) {
+
+        return;
+
+    }
+
+    element.textContent =
+        status;
+
+    element.className =
+        "payment-badge " +
+        type;
+
+}
+
+
+async function processIntegratedPayment() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    const orderInput =
+        document.getElementById(
+            "paymentOrderId"
+        );
+
+    const typeInput =
+        document.getElementById(
+            "paymentType"
+        );
+
+    if (!orderInput || !typeInput) {
+
+        return;
+
+    }
+
+    const orderId =
+        Number(
+            orderInput.value
+        );
+
+    const paymentType =
+        typeInput.value;
+
+    if (!orderId || orderId < 1) {
+
+        alert(
+            "Please enter a valid Order ID."
+        );
+
+        return;
+
+    }
+
+    setPaymentLoading(true);
+
+    setPaymentStatus(
+        "Processing",
+        "success"
+    );
+
+    try {
+
+        const endpoint =
+            paymentType === "retry"
+                ? "/pay/retry"
+                : "/pay/create";
+
+        const payload =
+            paymentType === "retry"
+                ? {
+                    orderId
+                }
+                : {
+                    orderId,
+                    paymentMethod: "UPI",
+                    paymentGateway: "RAZORPAY"
+                };
+
+        const paymentResponse =
+            await api(
+
+                endpoint,
+
+                {
+
+                    method: "POST",
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+
+                }
+
+            );
+
+        logPaymentResponse(
+            paymentResponse
+        );
+
+        const payment =
+            paymentResponse?.data ||
+            paymentResponse;
+
+        const razorpayKey =
+            payment?.key ||
+            payment?.razorpayKey;
+
+        const razorpayOrderId =
+            payment?.razorpayOrderId ||
+            payment?.gatewayOrderId;
+
+        const amount =
+            payment?.amount;
+
+        const currency =
+            payment?.currency ||
+            "INR";
+
+        const paymentId =
+            payment?.paymentId;
+
+        if (
+            !razorpayKey ||
+            !razorpayOrderId ||
+            !amount ||
+            !paymentId
+        ) {
+
+            throw new Error(
+                "Invalid Razorpay payment details received from server."
+            );
+
+        }
+
+        setPaymentLoading(false);
+
+        setPaymentStatus(
+            "Connected",
+            "success"
+        );
+
+        const options = {
+
+            key:
+                razorpayKey,
+
+            amount:
+                amount,
+
+            currency:
+                currency,
+
+            order_id:
+                razorpayOrderId,
+
+            name:
+                "Instant Delivery",
+
+            description:
+                paymentType === "retry"
+                    ? `Retry Payment - Order #${orderId}`
+                    : `Online Payment - Order #${orderId}`,
+
+            theme: {
+                color: "#2563eb"
+            },
+
+            handler:
+                async function (
+                    razorpayResponse
+                ) {
+
+                    setPaymentLoading(true);
+
+                    setPaymentStatus(
+                        "Verifying",
+                        "success"
+                    );
+
+                    try {
+
+                        const verifyResponse =
+                            await api(
+
+                                "/pay/verify",
+
+                                {
+
+                                    method: "POST",
+
+                                    body:
+                                        JSON.stringify({
+
+                                            paymentId,
+
+                                            gatewayPaymentId:
+                                                razorpayResponse
+                                                    .razorpay_payment_id,
+
+                                            gatewayOrderId:
+                                                razorpayResponse
+                                                    .razorpay_order_id,
+
+                                            gatewaySignature:
+                                                razorpayResponse
+                                                    .razorpay_signature,
+
+                                            gatewayResponse:
+                                                razorpayResponse
+
+                                        })
+
+                                }
+
+                            );
+
+                        logPaymentResponse(
+                            verifyResponse
+                        );
+
+                        setPaymentStatus(
+                            "Payment Successful",
+                            "success"
+                        );
+
+                        alert(
+                            "Payment verified successfully."
+                        );
+
+                        setPaymentLoading(false);
+
+                        showOrders();
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Payment verification error:",
+                            error
+                        );
+
+                        setPaymentStatus(
+                            "Verification Failed",
+                            "error"
+                        );
+
+                        logPaymentResponse({
+                            success: false,
+                            message:
+                                error.message
+                        });
+
+                        setPaymentLoading(
+                            false
+                        );
+
+                        alert(
+                            error.message
+                        );
+
+                    }
+
+                },
+
+            modal: {
+
+                ondismiss:
+                    function () {
+
+                        setPaymentLoading(
+                            false
+                        );
+
+                        setPaymentStatus(
+                            "Payment Cancelled",
+                            "error"
+                        );
+
+                    }
+
+            }
+
+        };
+
+        const razorpay =
+            new Razorpay(
+                options
+            );
+
+        razorpay.on(
+            "payment.failed",
+            function (
+                response
+            ) {
+
+                setPaymentLoading(
+                    false
+                );
+
+                setPaymentStatus(
+                    "Payment Failed",
+                    "error"
+                );
+
+                logPaymentResponse(
+                    response
+                );
+
+            }
+        );
+
+        razorpay.open();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Integrated payment error:",
+            error
+        );
+
+        setPaymentLoading(
+            false
+        );
+
+        setPaymentStatus(
+            "Error",
+            "error"
+        );
+
+        logPaymentResponse({
+            success: false,
+            message:
+                error.message
+        });
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+async function showOrders() {
+
+    if (!accessToken) {
+
+        showLogin();
+
+        return;
+
+    }
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <h2>
+            My Orders
+        </h2>
+
+        <div
+            id="orders"
+            style="
+                margin-top:20px;
+            "
+        >
+
+            Loading...
+
+        </div>
+
+    `;
+
+    try {
+
+        const response =
+            await api(
+                "/order"
+            );
+
+        const data =
+            response.data ||
+            response;
+
+        const orders =
+            Array.isArray(data)
+                ? data
+                : data.orders ||
+                  data.rows ||
+                  [];
+
+        renderOrders(
+            orders
+        );
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "orders"
+        ).innerHTML = `
+
+            <div class="alert alert-error">
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderOrders(
+    orders
+) {
+
+    if (!orders.length) {
+
+        document.getElementById(
+            "orders"
+        ).innerHTML = `
+
+            <div class="card center">
+
+                <h3>
+                    No orders yet.
+                </h3>
+
+                <button
+                    class="btn"
+                    style="margin-top:15px"
+                    onclick="showProducts()"
+                >
+
+                    Start Shopping
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    document.getElementById(
+        "orders"
+    ).innerHTML =
+        orders.map(
+
+            order => `
+
+                <div
+                    class="card"
+                    style="
+                        margin-bottom:15px;
+                    "
+                >
+
+                    <div
+                        style="
+                            display:flex;
+                            justify-content:
+                                space-between;
+                            gap:15px;
+                        "
+                    >
+
+                        <div>
+
+                            <h3>
+
+                                Order #
+
+                                ${
+                                    order.order_number ||
+                                    order.id
+                                }
+
+                            </h3>
+
+                            <p
+                                style="
+                                    color:#64748b;
+                                    margin-top:5px;
+                                "
+                            >
+
+                                ${
+                                    order.created_at ||
+                                    ""
+                                }
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="badge">
+
+                            ${
+                                order.order_status ||
+                                order.status ||
+                                "PLACED"
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="price"
+                        style="margin-top:15px"
+                    >
+
+                        ₹${
+                            Number(
+                                order.total_amount ||
+                                0
+                            ).toFixed(2)
+                        }
+
+                    </div>
+
+
+                    ${
+                        (
+                            order.order_status ||
+                            order.status
+                        ) !== "DELIVERED" &&
+                        (
+                            order.order_status ||
+                            order.status
+                        ) !== "CANCELLED"
+                            ?
+
+                            `
+                                <button
+                                    class="
+                                        btn
+                                        btn-danger
+                                    "
+                                    onclick="
+                                        cancelOrder(
+                                            ${order.id}
+                                        )
+                                    "
+                                >
+
+                                    Cancel Order
+
+                                </button>
+                            `
+
+                            :
+
+                            ""
+
+                    }
+
+                </div>
+
+            `
+
+        ).join("");
+
+}
+
+
+/* =====================================================
+   CANCEL ORDER
+===================================================== */
+
+async function cancelOrder(
+    orderId
+) {
+
+    if (
+        !confirm(
+            "Cancel this order?"
+        )
+    ) {
+
+        return;
+
+    }
+
+    try {
+
+        await api(
+
+            `/order/${orderId}`,
+
+            {
+
+                method: "DELETE"
+
+            }
+
+        );
+
+        alert(
+            "Order cancelled."
+        );
+
+        showOrders();
+
+    }
+
+    catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(
+    html
+) {
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML =
+        html;
+
+    document.getElementById(
+        "modal"
+    ).classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function closeModal() {
+
+    document.getElementById(
+        "modal"
+    ).classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateNavigation();
+
+showHome();
+
+if (accessToken) {
+
+    updateCartCount();
 
 }
 
 </script>
-
-<footer class="footer">
-
-    <div class="footer-content">
-
-        <div class="footer-left">
-
-            <div>
-
-                © 2026 <strong>Digesh Kumar Tandan</strong>. All Rights Reserved.
-
-            </div>
-
-            <small>
-
-                Backend Developer • Node.js • MySQL • Express.js • RESTful APIs
-
-            </small>
-
-        </div>
-
-        <div class="footer-right">
-
-            <a
-                href="https://github.com/digesh-tandan/"
-                target="_blank"
-                title="GitHub"
-            >
-                <i class="fa-brands fa-github"></i>
-                GitHub
-            </a>
-        
-            <a
-                href="https://www.linkedin.com/in/digesh-kumar-tandan/"
-                target="_blank"
-                title="LinkedIn"
-            >
-                <i class="fa-brands fa-linkedin"></i>
-                LinkedIn
-            </a>
-        
-            <a
-                href="https://drive.google.com/file/d/1ELckR1jLYnSlzMvSXTJhESnhq7mo3CSk/view?usp=drivesdk"
-                target="_blank"
-                title="Resume"
-            >
-                <i class="fa-solid fa-file-lines"></i>
-                Resume
-            </a>
-        
-        </div>
-
-    </div>
-
-</footer>
 
 </body>
 
