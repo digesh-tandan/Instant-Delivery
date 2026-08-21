@@ -471,17 +471,13 @@ MySQL
 
 Deployed on **Vercel**
 
-```text
-https://instantdelivery.vercel.app/
-```
-
 ### Backend
 
 Deployed on **Render**
 
-```text
-https://instant-delivery-backend-e2lq.onrender.com
-```
+### Database
+
+Deployed on **TiBD**
 
 ### Source Code
 
@@ -578,7 +574,7 @@ https://github.com/digesh-tandan/Instant-Delivery
 https://instantdelivery.vercel.app/
 
 **Live Backend:**
-https://instant-delivery-backend-e2lq.onrender.com
+https://instant-delivery-1.onrender.com
 
 ---
 
