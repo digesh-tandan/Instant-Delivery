@@ -11,7 +11,7 @@ The project provides a foundation for online grocery and daily-essentials delive
 | Platform              | URL                                                |
 | --------------------- | -------------------------------------------------- |
 | **Frontend**          | https://instantdelivery.vercel.app/                |
-| **Backend API**       | https://instant-delivery-1.onrender.com |
+| **Backend API**       | https://instant-delivery-1.onrender.com            |
 | **GitHub Repository** | https://github.com/digesh-tandan/Instant-Delivery  |
 
 ---
@@ -156,27 +156,70 @@ Instant-Delivery/
 │   ├── certs/
 │   ├── src/
 │   │   ├── config/
+│   │   │   ├── cloudinary.js
+│   │   │   ├── database.js
+│   │   │   ├── razorpay.js
+│   │   ├── constants/
+│   │   │   ├── addressMessages.js
+│   │   │   ├── ...
+│   │   │   ├── wishlistMessages.js
 │   │   ├── controllers/
-│   │   │   ├── admin/
-│   │   │   └── auth/
+│   │   │   ├── address/
+│   │   │   │   ├── addresses.controller.js
+│   │   │   ├── ...
+│   │   │   └── wishlist/
+│   │   │   │   ├── wishlist.controller.js
 │   │   ├── helpers/
+│   │   │   ├── cleanup.helper.js
+│   │   │   ├── ...
+│   │   │   ├── token.helper.js
 │   │   ├── middleware/
+│   │   │   ├── auth.middleware.js
+│   │   │   ├── ...
+│   │   │   ├── validation.middleware.js
 │   │   ├── models/
+│   │   │   ├── addresses.model.js
+│   │   │   ├── ...
+│   │   │   ├── wishlist.model.js
 │   │   ├── routes/
-│   │   │   ├── admin/
-│   │   │   └── auth/
+│   │   │   ├── address/
+│   │   │   │   ├── address.routes.js
+│   │   │   ├── ...
+│   │   │   └── wishlist/
+│   │   │   │   ├── wishlist.routes.js
 │   │   ├── services/
+│   │   │   ├── address/
+│   │   │   │   ├── addresses.service.js
+│   │   │   ├── ...
+│   │   │   ├── wishlist/
+│   │   │   │   ├── addWishlist.service.js
+│   │   │   │   ├── getWishlist.service.js
+│   │   │   │   ├── index.js
+│   │   │   │   ├── removeWishlist.service.js
 │   │   ├── utils/
+│   │   │   ├── validation/
+│   │   │   │   ├── common.js
+│   │   │   │   ├── ...
+│   │   │   │   ├── string.js
+│   │   │   ├── ApiError.js
+│   │   │   ├── ...
+│   │   │   ├── uploadFactory.js
 │   │   ├── validations/
+│   │   │   ├── addresses/
+│   │   │   │   ├── addresses.validation.js
+│   │   │   ├── ...
+│   │   │   ├── storeManager/
+│   │   │   │   ├── StoreManager.validation.js
 │   │   └── app.js
-│   ├── .env.example
+│   │   └── index.js
+│   ├── .env.example (Optional During production)
+│   ├── .env (Mandatory during Production/Testing)
 │   ├── package.json
 │   └── package-lock.json
 │
 ├── frontend/
-│   └── ...
+│   └── index.html
 │
-├── index2.html
 └── README.md
 ```
 
