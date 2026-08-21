@@ -11,7 +11,7 @@ The project provides a foundation for online grocery and daily-essentials delive
 | Platform              | URL                                                |
 | --------------------- | -------------------------------------------------- |
 | **Frontend**          | https://instantdelivery.vercel.app/                |
-| **Backend API**       | https://instant-delivery-backend-e2lq.onrender.com |
+| **Backend API**       | https://instant-delivery-1.onrender.com |
 | **GitHub Repository** | https://github.com/digesh-tandan/Instant-Delivery  |
 
 ---
