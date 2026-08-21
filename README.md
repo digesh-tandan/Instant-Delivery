@@ -281,14 +281,44 @@ Reset Password
 
 The project uses **MySQL** as the primary relational database.
 
-Important tables include:
+Tables include:
 
 ```text
-users
-otp
-pendingRegistration
+addresses
+app_settings
+banners
+brands
+cart_items
+carts
+categories
+coupon_usages
+coupons
+delivery_assignments
+delivery_partner_applications
+delivery_partner_locations
+delivery_partners
+inventory
+inventory_transactions
+notifications
+order_items
+order_status_history
+orders
+otps
+payments
+pending_registrations
+product_images
+product_variants
+products
 refresh_tokens
-delivery_assignment
+reviews
+roles
+search_history
+store_manager_applications
+store_managers
+stores
+user_devices
+users
+wishlists
 ```
 
 The database layer is accessed through dedicated models and services.
